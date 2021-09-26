@@ -2,6 +2,9 @@ import service from './http.js'
 import { isArray, isObject, handlerArrayToObject } from '@/decorator/handler'
 const { get, post } = service
 
+/**
+* 请求参数处理
+**/
 const handlerRequestParams = (data = []) => {
   // first参数是Api在具体调用的时候传递的
   const [first, ...other] = data
@@ -29,6 +32,10 @@ const handlerRequestParams = (data = []) => {
   return params
 }
 
+
+/**
+* 设置请求头
+**/
 const handlerSetHeader = (data = []) => {
   // eslint-disable-next-line no-unused-vars
   const [first, ...other] = data
@@ -40,13 +47,22 @@ const handlerSetHeader = (data = []) => {
   return headers
 }
 
+/**
+* GET 请求
+**/
 export const wrapperGet = url => (...params) => get(url, {
   params: handlerRequestParams(params),
   headers: handlerSetHeader(params)
 })
 
+/**
+* POST 请求
+**/
 export const wrapperPost = url => (...data) => post(url, handlerRequestParams(data), { headers: handlerSetHeader(data) })
 
+/**
+* POST From 请求
+**/
 export const wrapperFormPost = url => (...data) => {
   const formData = new FormData()
   const params = handlerRequestParams(data)
@@ -54,6 +70,9 @@ export const wrapperFormPost = url => (...data) => {
   return post(url, formData, { headers: handlerSetHeader(data) })
 }
 
+/**
+* POST Params 请求
+**/
 export const wrapperPostParams = url => (...params) => post(url, null, {
   params: handlerRequestParams(params),
   headers: handlerSetHeader(params)

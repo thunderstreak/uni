@@ -1,16 +1,43 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/index/index",
+			"path": "pages/home/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/room/index",
+			"style": {
+				"navigationBarTitleText": ""
 			}
 		}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"navigationBarBackgroundColor": "#fff",
+		"backgroundColor": "#fff",
+		"app-plus": {"titleNView": false} 
+	},
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#007AFF",
+		"borderStyle": "black",
+		"backgroundColor": "#F8F8F8",
+		"list": [
+			{
+				"pagePath": "pages/home/index",
+				"iconPath": "static/assets/tabs/room.png",
+				"selectedIconPath": "static/assets/tabs/room-selected.png",
+				"text": "家庭"
+			},
+			{
+				"pagePath": "pages/room/index",
+				"iconPath": "static/assets/tabs/setting.png",
+				"selectedIconPath": "static/assets/tabs/setting-selected.png",
+				"text": "房间"
+			}
+		]
 	}
 }

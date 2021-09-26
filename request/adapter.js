@@ -6,16 +6,6 @@ const adapter = (config) => {
 	const { method, baseURL, headers, url, params, paramsSerializer, data, dataType, responseType, sslVerify } = config
 	const fullUrl = buildFullPath(baseURL, url)
 
-	// return uni.request({
-	// 	method: method.toUpperCase(),
-	// 	url: buildURL(fullUrl, params, paramsSerializer),
-	// 	header: headers,
-	// 	data,
-	// 	dataType,
-	// 	responseType,
-	// 	sslVerify
-	// })
-
 	return new Promise((resolve, reject) => {
 	    uni.request({
 	        method: method.toUpperCase(),
@@ -27,7 +17,6 @@ const adapter = (config) => {
 	        sslVerify,
 	        complete(response) {
 	            const res = { ...response, config }
-				console.log('test:', response)
 	            settle(resolve, reject, res)
 	        }
 	    })
