@@ -31,7 +31,12 @@
 						duration: 5000,
 					});
 				}, (err) => {
-					console.log(err)
+					uni.showToast({
+						icon: 'none',
+						mask: true,
+						title: `识别错误：${error.code} ${error.message}`,
+						duration: 5000,
+					});
 				});
 			}
 		}

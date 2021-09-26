@@ -118,6 +118,7 @@
 </script>
 
 <style lang="scss">
+	@import url('@/static/styles/index.scss');
 	.content {
 		padding: 0 38rpx;
 		&-cen{
@@ -135,12 +136,12 @@
 				align-items: center;
 				&-icon{
 					background: url(../../static/assets/weather-qing.png) no-repeat center;
-					background-size: 96rpx 96rpx;
-					width: 96rpx;
-					height: 96rpx;
+					background-size: 48rpx 48rpx;
+					width: 48rpx;
+					height: 48rpx;
 				}
 				&-txt{
-					font-size: 48rpx;
+					font-size: 36rpx;
 					padding: 0 15rpx;
 					color: #202020;
 				}

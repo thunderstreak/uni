@@ -13,11 +13,10 @@
 </script>
 
 <style lang="scss">
-	@import url('./static/styles/index.scss');
 	
 	.uni-tabbar { // tab背景
 		background: #fff !important; // tab背景图片或者渐变色，背景色和背景图片最多选择一个进行设置
-		box-shadow: 0 0 3px #ccc;
+		box-shadow: 0 0 3rpx #ccc;
 		.uni-tabbar-border { // tabBar上边框
 			background-color: #fff !important; // tabBar上边框的颜色
 		}
@@ -25,7 +24,7 @@
 			padding: 10rpx 0;
 		}
 		.uni-tabbar__bd { // tabBar单项
-			height: auto !important;
+			height: 80rpx !important;
 			.uni-tabbar__icon { // 图标
 				width: 48px!important;
 				height: 48px!important;

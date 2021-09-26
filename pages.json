@@ -3,7 +3,8 @@
 		{
 			"path": "pages/home/index",
 			"style": {
-				"navigationBarTitleText": ""
+				"navigationBarTitleText": "",
+				"navigationBarBackgroundColor":""
 			}
 		},
 		{
@@ -15,10 +16,11 @@
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
+		"navigationBarTitleText": "",
 		"navigationBarBackgroundColor": "#fff",
 		"backgroundColor": "#fff",
-		"app-plus": {"titleNView": false} 
+		"navigationStyle":"custom"
+		// "app-plus": {"titleNView": true}
 	},
 	"tabBar": {
 		"color": "#7A7E83",

@@ -19,6 +19,13 @@
 				</view>
 			</view>
 			<view class="tabs-content-box">
+				<view class="tabs-content-box-icon chufnag-light"></view>
+				<text class="tabs-content-box-txt">厨房灯</text>
+				<view class="tabs-content-box-switch">
+					<switch color="#55b3a9" checked />
+				</view>
+			</view>
+			<view class="tabs-content-box">
 				<view class="tabs-content-box-icon kongtiao"></view>
 				<text class="tabs-content-box-txt">空调</text>
 				<view class="tabs-content-box-operatior">
