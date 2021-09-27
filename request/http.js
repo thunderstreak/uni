@@ -1,13 +1,15 @@
 import axios from 'axios'
 import { requestConfigInterceptors, requestErrorInterceptors, responseDataInterceptors, responseErrorInterceptors } from './interceptors.js'
-import adapter from './adapter'
+import adapter from './adapter.js'
+import { CONFIG } from '@/config/index.js'
 
-const baseURL = 'http://192.168.0.184:4001/user/'
+const NODE_ENV = process.env.NODE_ENV
+
 const service = axios.create({
-    withCredentials: true,
-    crossDomain: true,
-    baseURL,
-    timeout: 6000
+	withCredentials: true,
+	crossDomain: true,
+	baseURL: CONFIG[NODE_ENV].BASE_URL,
+	timeout: 6000
 })
 
 // request interceptor

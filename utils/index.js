@@ -1,3 +1,6 @@
+import area from '@/static/data/area.js'
+
+// Create polygons points
 export const createPolygons = (str = '') => {
 	const ps = str.split(',')
 	const points = []
@@ -12,6 +15,15 @@ export const createPolygons = (str = '') => {
 	return points
 }
 
+// Create all administrative areas
+export const createAllAreas = () => {
+	// const res = area.map(createPolygons)
+	console.log(1)
+	// return area.map(createPolygons)
+}
+
+
+// Checks whether the point is within the specified target
 export const isPointInPolygon = (point, pts) => {
 	var N = pts.length; //pts [{latitude:xxx,longitude:xxx},{latitude:xxx,longitude:xxx}]
 	var boundOrVertex = true; //如果点位于多边形的顶点或边上，也算做点在多边形内，直接返回true
@@ -73,3 +85,4 @@ export const isPointInPolygon = (point, pts) => {
 		return true;
 	}
 }
+

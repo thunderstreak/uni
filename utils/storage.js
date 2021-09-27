@@ -1,5 +1,5 @@
 export const SESSION_STORAGE = 'SESSION_STORAGE'
-export const LCOAl_STORAGE = 'LCOAl_STORAGE'
+export const LCOAl_STORAGE = 'LCOAl_STORAGE' 
 
 // get cache
 export function getKey(field, storage = SESSION_STORAGE) {
@@ -25,11 +25,51 @@ export function setKey(field, value, storage = SESSION_STORAGE) {
     new Error('storage is stringify fail')
     return null
   }
-
 }
 
 // clear cache
 export function clearKey() {
   localStorage.clear()
   sessionStorage.clear()
+}
+
+export const setStorageSync = (key = '', data = '') => {
+	if (key && data) {
+		uni.setStorageSync(key, data);
+	}
+}
+
+export const getStorageSync = (key = '') => {
+	try {
+		const value = uni.getStorageSync(key);
+		if (value) {
+			return value
+		}
+	} catch (e) {
+		console.log('getStorageSync:', e);
+	}
+}
+
+export const removeStorageSync = (key = '') => {
+	try {
+		return uni.removeStorageSync(key);
+	} catch (e) {
+	  console.log('removeStorageSync:', e);
+	}
+}
+
+export const getStorageInfoSync = () => {
+	try {
+		return uni.getStorageInfoSync();
+	} catch (e) {
+		console.log('getStorageInfoSync:', e);
+	}
+}
+
+export const clearStorageSync = () => {
+	try {
+		uni.clearStorageSync();
+	} catch (e) {
+	  console.log('clearStorageSync:', e);
+	}
 }

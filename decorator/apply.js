@@ -98,3 +98,9 @@ export const setComposeDecorator = (...handle) => createDecorator(fn => async(..
   const data = await fn(...args)
   return compose(...handle)(data)
 })
+
+// cache 
+export const getCacheaDecorator = (handle) => createDecorator(fn => async(...args) => {
+	const cache =	handle()
+	return cache ? cache : await fn(...args)
+})

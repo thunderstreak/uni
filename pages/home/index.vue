@@ -46,6 +46,7 @@
 	import Api from '@/api/index'
 	import { mapGetters, mapActions } from 'vuex'
 	import { SET_USER_LOGIN_INFO, GET_USER_LOGIN_INFO } from '@/store/types/app'
+	import { LOGIN_INFO } from '@/constant/index.js'
 	export default {
 		components:{ HeaderTop, Tabs },
 		data() {
@@ -64,9 +65,11 @@
 		    ...mapGetters([GET_USER_LOGIN_INFO])
 		},
 		onLoad() {
-			Api.get({ t: 1 }).then(res => {
-				console.log(res.config.headers)
-				this.SET_USER_LOGIN_INFO(res.config.headers)
+			Api.appLogin({ loginName: '瑞昌市管理员', password: '111111' }).then(res => {
+				console.log(res)
+				// this.SET_USER_LOGIN_INFO(res.config.headers)
+			}).catch(err => {
+				console.log(err)
 			})
 		},
 		methods: {
