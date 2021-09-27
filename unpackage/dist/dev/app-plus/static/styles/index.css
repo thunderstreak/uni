@@ -1,0 +1,35 @@
+
+.keting-light{
+	width: 48rpx;
+	height: 48rpx;
+	background: url('@/static/assets/icon/weibolu.png') no-repeat center;
+	background-size: 48rpx 48rpx;
+}
+
+.zoulang-light{
+	width: 48rpx;
+	height: 48rpx;
+	background: url('@/static/assets/icon/zoulang-light.png') no-repeat center;
+	background-size: 48rpx 48rpx;
+}
+
+.kongtiao{
+	width: 48rpx;
+	height: 48rpx;
+	background: url('@/static/assets/icon/kongtiao.png') no-repeat center;
+	background-size: 48rpx 48rpx;
+}
+
+.diaodeng-light{
+	width: 48rpx;
+	height: 48rpx;
+	background: url('@/static/assets/icon/diaodeng-light.png') no-repeat center;
+	background-size: 48rpx 48rpx;
+}
+
+.chufnag-light{
+	width: 48rpx;
+	height: 48rpx;
+	background: url('@/static/assets/icon/taideng.png') no-repeat center;
+	background-size: 48rpx 48rpx;
+}

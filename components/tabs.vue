@@ -55,7 +55,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="less">
 .tabs{
 	&-box{
 		display: flex;

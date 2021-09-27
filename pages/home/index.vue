@@ -120,8 +120,8 @@
 	}
 </script>
 
-<style lang="scss">
-	@import url('@/static/styles/index.scss');
+<style lang="less">
+	@import url('@/static/styles/index.css');
 	.content {
 		padding: 0 38rpx;
 		&-cen{

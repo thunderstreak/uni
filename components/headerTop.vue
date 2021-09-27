@@ -43,7 +43,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="less">
 .header{
 	display: flex;
 	justify-content: space-between;
