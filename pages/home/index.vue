@@ -1,5 +1,6 @@
 <template>
 	<view class="content">
+    <view :style="{ height: iStatusBarHeight + 'px'}"></view>
 		<HeaderTop title="家庭"/>
 		
 		<view class="content-cen">
@@ -52,6 +53,7 @@
 		data() {
 			return {
 				title: 'Hello1',
+        iStatusBarHeight: 0,
 				facility: [
 					{
 						icon: 'diaodeng-light',
@@ -65,6 +67,7 @@
 		    ...mapGetters([GET_USER_LOGIN_INFO])
 		},
 		onLoad() {
+      this.iStatusBarHeight = uni.getSystemInfoSync().statusBarHeight
 			Api.appLogin({ loginName: '瑞昌市管理员', password: '111111' }).then(res => {
 				console.log(res)
 				// this.SET_USER_LOGIN_INFO(res.config.headers)
