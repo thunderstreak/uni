@@ -223,22 +223,31 @@ var render = function() {
     "v-uni-view",
     { staticClass: _vm._$g(0, "sc"), attrs: { _i: 0 } },
     [
-      _c("HeaderTop", { attrs: { _i: 1 } }),
+      _c("v-uni-view", { style: _vm._$g(1, "s"), attrs: { _i: 1 } }),
+      _c("HeaderTop", { attrs: { _i: 2 } }),
       _c(
         "v-uni-view",
-        { staticClass: _vm._$g(2, "sc"), attrs: { _i: 2 } },
+        {
+          staticClass: _vm._$g(3, "sc"),
+          attrs: { _i: 3 },
+          on: {
+            click: function($event) {
+              return _vm.$handleViewEvent($event)
+            }
+          }
+        },
         [
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(3, "sc"), attrs: { _i: 3 } },
+            { staticClass: _vm._$g(4, "sc"), attrs: { _i: 4 } },
             [
               _c("v-uni-view", {
-                staticClass: _vm._$g(4, "sc"),
-                attrs: { _i: 4 }
+                staticClass: _vm._$g(5, "sc"),
+                attrs: { _i: 5 }
               }),
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(5, "sc"), attrs: { _i: 5 } },
+                { staticClass: _vm._$g(6, "sc"), attrs: { _i: 6 } },
                 [_vm._v("晴")]
               )
             ],
@@ -246,115 +255,42 @@ var render = function() {
           ),
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(6, "sc"), attrs: { _i: 6 } },
-            [
-              _c(
+            { staticClass: _vm._$g(7, "sc"), attrs: { _i: 7 } },
+            _vm._l(_vm._$g(8, "f"), function(item, index, $20, $30) {
+              return _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(7, "sc"), attrs: { _i: 7 } },
+                {
+                  key: item,
+                  staticClass: _vm._$g("8-" + $30, "sc"),
+                  attrs: { _i: "8-" + $30 }
+                },
                 [
                   _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(8, "sc"), attrs: { _i: 8 } },
-                    [_vm._v("26.0°")]
+                    {
+                      staticClass: _vm._$g("9-" + $30, "sc"),
+                      attrs: { _i: "9-" + $30 }
+                    },
+                    [_vm._v(_vm._$g("9-" + $30, "t0-0"))]
                   ),
                   _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(9, "sc"), attrs: { _i: 9 } },
-                    [_vm._v("室内温度")]
+                    {
+                      staticClass: _vm._$g("10-" + $30, "sc"),
+                      attrs: { _i: "10-" + $30 }
+                    },
+                    [_vm._v(_vm._$g("10-" + $30, "t0-0"))]
                   )
-                ],
-                1
-              ),
-              _c(
-                "v-uni-view",
-                { staticClass: _vm._$g(10, "sc"), attrs: { _i: 10 } },
-                [
-                  _c(
-                    "v-uni-view",
-                    { staticClass: _vm._$g(11, "sc"), attrs: { _i: 11 } },
-                    [_vm._v("26.0°")]
-                  ),
-                  _c(
-                    "v-uni-view",
-                    { staticClass: _vm._$g(12, "sc"), attrs: { _i: 12 } },
-                    [_vm._v("二氧化碳")]
-                  )
-                ],
-                1
-              ),
-              _c(
-                "v-uni-view",
-                { staticClass: _vm._$g(13, "sc"), attrs: { _i: 13 } },
-                [
-                  _c(
-                    "v-uni-view",
-                    { staticClass: _vm._$g(14, "sc"), attrs: { _i: 14 } },
-                    [_vm._v("26.0°")]
-                  ),
-                  _c(
-                    "v-uni-view",
-                    { staticClass: _vm._$g(15, "sc"), attrs: { _i: 15 } },
-                    [_vm._v("挥发物")]
-                  )
-                ],
-                1
-              ),
-              _c(
-                "v-uni-view",
-                { staticClass: _vm._$g(16, "sc"), attrs: { _i: 16 } },
-                [
-                  _c(
-                    "v-uni-view",
-                    { staticClass: _vm._$g(17, "sc"), attrs: { _i: 17 } },
-                    [_vm._v("26.0°")]
-                  ),
-                  _c(
-                    "v-uni-view",
-                    { staticClass: _vm._$g(18, "sc"), attrs: { _i: 18 } },
-                    [_vm._v("PM2.5")]
-                  )
-                ],
-                1
-              ),
-              _c(
-                "v-uni-view",
-                { staticClass: _vm._$g(19, "sc"), attrs: { _i: 19 } },
-                [
-                  _c(
-                    "v-uni-view",
-                    { staticClass: _vm._$g(20, "sc"), attrs: { _i: 20 } },
-                    [_vm._v("26.0°")]
-                  ),
-                  _c(
-                    "v-uni-view",
-                    { staticClass: _vm._$g(21, "sc"), attrs: { _i: 21 } },
-                    [_vm._v("PM10")]
-                  )
-                ],
-                1
-              ),
-              _c(
-                "v-uni-view",
-                { staticClass: _vm._$g(22, "sc"), attrs: { _i: 22 } },
-                [
-                  _c("v-uni-view", {
-                    staticClass: _vm._$g(23, "sc"),
-                    attrs: { _i: 23 }
-                  }),
-                  _c("v-uni-view", {
-                    staticClass: _vm._$g(24, "sc"),
-                    attrs: { _i: 24 }
-                  })
                 ],
                 1
               )
-            ],
+            }),
             1
           )
         ],
         1
       ),
-      _c("Tabs", { attrs: { _i: 25 } })
+      _c("Tabs", { attrs: { _i: 11 } })
     ],
     1
   )
@@ -1617,7 +1553,7 @@ var ___CSS_LOADER_URL_REPLACEMENT_4___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_
 var ___CSS_LOADER_URL_REPLACEMENT_5___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_5___);
 var ___CSS_LOADER_URL_REPLACEMENT_6___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_6___);
 // Module
-exports.push([module.i, "\n.keting-light{\r\n\twidth: 48rpx;\r\n\theight: 48rpx;\r\n\tbackground: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ") no-repeat center;\r\n\tbackground-size: 48rpx 48rpx;\n}\n.zoulang-light{\r\n\twidth: 48rpx;\r\n\theight: 48rpx;\r\n\tbackground: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ") no-repeat center;\r\n\tbackground-size: 48rpx 48rpx;\n}\n.kongtiao{\r\n\twidth: 48rpx;\r\n\theight: 48rpx;\r\n\tbackground: url(" + ___CSS_LOADER_URL_REPLACEMENT_2___ + ") no-repeat center;\r\n\tbackground-size: 48rpx 48rpx;\n}\n.diaodeng-light{\r\n\twidth: 48rpx;\r\n\theight: 48rpx;\r\n\tbackground: url(" + ___CSS_LOADER_URL_REPLACEMENT_3___ + ") no-repeat center;\r\n\tbackground-size: 48rpx 48rpx;\n}\n.chufnag-light{\r\n\twidth: 48rpx;\r\n\theight: 48rpx;\r\n\tbackground: url(" + ___CSS_LOADER_URL_REPLACEMENT_4___ + ") no-repeat center;\r\n\tbackground-size: 48rpx 48rpx;\n}\n.content {\r\n  padding: 0 38rpx;\n}\n.content-cen {\r\n  border-radius: 15rpx;\r\n  height: 380rpx;\r\n  background: #f3f7ff url(" + ___CSS_LOADER_URL_REPLACEMENT_5___ + ") no-repeat right;\r\n  background-size: 100%;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  flex-direction: column;\n}\n.content-cen-weather {\r\n  padding: 40rpx 25rpx;\r\n  display: flex;\r\n  align-items: center;\n}\n.content-cen-weather-icon {\r\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_6___ + ") no-repeat center;\r\n  background-size: 48rpx 48rpx;\r\n  width: 48rpx;\r\n  height: 48rpx;\n}\n.content-cen-weather-txt {\r\n  font-size: 36rpx;\r\n  padding: 0 15rpx;\r\n  color: #202020;\n}\n.content-cen-box {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  flex-wrap: wrap;\r\n  background: rgba(239, 243, 243, 0.6);\n}\n.content-cen-box-p {\r\n  width: 170rpx;\r\n  padding: 5rpx 15rpx;\r\n  margin: 5rpx 0;\n}\n.content-cen-box-p-num {\r\n  font-size: 38rpx;\r\n  color: #6ea0fd;\n}\n.content-cen-box-p-txt {\r\n  font-size: 24rpx;\r\n  color: #5d5d5d;\n}\r\n", ""]);
+exports.push([module.i, "\n.keting-light{\r\n\twidth: 48rpx;\r\n\theight: 48rpx;\r\n\tbackground: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ") no-repeat center;\r\n\tbackground-size: 48rpx 48rpx;\n}\n.zoulang-light{\r\n\twidth: 48rpx;\r\n\theight: 48rpx;\r\n\tbackground: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ") no-repeat center;\r\n\tbackground-size: 48rpx 48rpx;\n}\n.kongtiao{\r\n\twidth: 48rpx;\r\n\theight: 48rpx;\r\n\tbackground: url(" + ___CSS_LOADER_URL_REPLACEMENT_2___ + ") no-repeat center;\r\n\tbackground-size: 48rpx 48rpx;\n}\n.diaodeng-light{\r\n\twidth: 48rpx;\r\n\theight: 48rpx;\r\n\tbackground: url(" + ___CSS_LOADER_URL_REPLACEMENT_3___ + ") no-repeat center;\r\n\tbackground-size: 48rpx 48rpx;\n}\n.chufnag-light{\r\n\twidth: 48rpx;\r\n\theight: 48rpx;\r\n\tbackground: url(" + ___CSS_LOADER_URL_REPLACEMENT_4___ + ") no-repeat center;\r\n\tbackground-size: 48rpx 48rpx;\n}\n.content {\r\n  padding: 0 38rpx;\n}\n.content-cen {\r\n  border-radius: 15rpx;\r\n  background: #f3f7ff url(" + ___CSS_LOADER_URL_REPLACEMENT_5___ + ") no-repeat right;\r\n  background-size: 100%;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  flex-direction: column;\n}\n.content-cen-weather {\r\n  padding: 40rpx 25rpx;\r\n  display: flex;\r\n  align-items: center;\n}\n.content-cen-weather-icon {\r\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_6___ + ") no-repeat center;\r\n  background-size: 48rpx 48rpx;\r\n  width: 48rpx;\r\n  height: 48rpx;\n}\n.content-cen-weather-txt {\r\n  font-size: 36rpx;\r\n  padding: 0 15rpx;\r\n  color: #202020;\n}\n.content-cen-box {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  flex-wrap: wrap;\r\n  background: rgba(239, 243, 243, 0.6);\n}\n.content-cen-box-p {\r\n  width: 170rpx;\r\n  padding: 5rpx 15rpx;\r\n  margin: 5rpx 0;\n}\n.content-cen-box-p-num {\r\n  font-size: 38rpx;\r\n  color: #6ea0fd;\n}\n.content-cen-box-p-txt {\r\n  font-size: 24rpx;\r\n  color: #5d5d5d;\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 

@@ -1,6 +1,6 @@
-export const SESSION_STORAGE = 'SESSION_STORAGE'
-export const LCOAl_STORAGE = 'LCOAl_STORAGE' 
-
+import { SESSION_STORAGE, LCOAl_STORAGE } from '@/constant/index'
+import { setTryCatchDecorator } from '@/decorator/ordinary'
+import { toastError } from '@/utils/changeover'
 // get cache
 export function getKey(field, storage = SESSION_STORAGE) {
   try {
@@ -33,43 +33,33 @@ export function clearKey() {
   sessionStorage.clear()
 }
 
-export const setStorageSync = (key = '', data = '') => {
-	if (key && data) {
-		uni.setStorageSync(key, data);
-	}
-}
+export default new class Storage {
+  setStorageSync(key = '', data = '') {
+    if (key && data) {
+    	uni.setStorageSync(key, data);
+    }
+  }
 
-export const getStorageSync = (key = '') => {
-	try {
-		const value = uni.getStorageSync(key);
-		if (value) {
-			return value
-		}
-	} catch (e) {
-		console.log('getStorageSync:', e);
-	}
-}
+  @setTryCatchDecorator(toastError)
+  getStorageSync(key = '') {
+    const value = uni.getStorageSync(key);
+    if (value) {
+    	return value
+    }
+  }
 
-export const removeStorageSync = (key = '') => {
-	try {
-		return uni.removeStorageSync(key);
-	} catch (e) {
-	  console.log('removeStorageSync:', e);
-	}
-}
+  @setTryCatchDecorator(toastError)
+  removeStorageSync(key = '') {
+  	return uni.removeStorageSync(key);
+  }
 
-export const getStorageInfoSync = () => {
-	try {
-		return uni.getStorageInfoSync();
-	} catch (e) {
-		console.log('getStorageInfoSync:', e);
-	}
-}
+  @setTryCatchDecorator(toastError)
+  getStorageInfoSync() {
+  	return uni.getStorageInfoSync();
+  }
 
-export const clearStorageSync = () => {
-	try {
-		uni.clearStorageSync();
-	} catch (e) {
-	  console.log('clearStorageSync:', e);
-	}
-}
+  @setTryCatchDecorator(toastError)
+  clearStorageSync() {
+  	uni.clearStorageSync();
+  }
+}()

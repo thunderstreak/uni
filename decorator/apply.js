@@ -1,13 +1,11 @@
 import { compose, createDecorator } from './core'
 
 // loading decorator
-export const getLoadingDecorator = loadingService => createDecorator(fn => (...args) => {
-  let instance
-  if (loadingService) {
-    const { show } = loadingService
-    instance = show()
+export const getLoadingDecorator = (show, hide) => createDecorator(fn => (...args) => {
+  if (show && hide) {
+    show()
   }
-  return fn(...args).finally(() => instance && instance.close())
+  return fn(...args).finally(hide)
 })
 
 // success or error message notify
@@ -99,7 +97,7 @@ export const setComposeDecorator = (...handle) => createDecorator(fn => async(..
   return compose(...handle)(data)
 })
 
-// cache 
+// cache
 export const getCacheaDecorator = (handle) => createDecorator(fn => async(...args) => {
 	const cache =	handle()
 	return cache ? cache : await fn(...args)

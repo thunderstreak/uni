@@ -1,13 +1,13 @@
-import { LOGIN_INFO } from '@/constant/index.js';
-import { setStorageSync, getStorageSync } from '@/utils/storage.js';
+import { LOGIN_INFO } from '@/constant/index';
+import Storage from '@/utils/storage';
 
 // set login info to cache
 export const handlerGetLoginInfoCache = () => {
-  return getStorageSync(LOGIN_INFO);
+  return Storage.getStorageSync(LOGIN_INFO);
 };
 
 // fetch login info from the cache
 export const handlerSetLoginInfoCache = (res = {}) => {
-  setStorageSync(LOGIN_INFO, res.data);
+  Storage.setStorageSync(LOGIN_INFO, res.object);
   return res;
-}; 
+};

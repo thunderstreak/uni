@@ -2,18 +2,18 @@
 	<view class="content">
     <view :style="{ height: iStatusBarHeight + 'px'}"></view>
 		<HeaderTop title="家庭"/>
-		
-		<view class="content-cen">
+
+		<view class="content-cen" @click="handlerDownLoadFile">
 			<view class="content-cen-weather">
 				<view class="content-cen-weather-icon"></view>
 				<view class="content-cen-weather-txt">晴</view>
 			</view>
 			<view class="content-cen-box">
-				<view class="content-cen-box-p">
-					<view class="content-cen-box-p-num">26.0°</view>
-					<view class="content-cen-box-p-txt">室内温度</view>
+				<view class="content-cen-box-p" v-for="(item, index) in statusList" :key="index">
+					<view class="content-cen-box-p-num">{{ item.传感器数值 }}</view>
+					<view class="content-cen-box-p-txt">{{ item.传感器名称 }}</view>
 				</view>
-				<view class="content-cen-box-p">
+				<!-- <view class="content-cen-box-p">
 					<view class="content-cen-box-p-num">26.0°</view>
 					<view class="content-cen-box-p-txt">二氧化碳</view>
 				</view>
@@ -32,12 +32,12 @@
 				<view class="content-cen-box-p">
 					<view class="content-cen-box-p-num"></view>
 					<view class="content-cen-box-p-txt"></view>
-				</view>
+				</view> -->
 			</view>
 		</view>
-		
+
 		<Tabs></Tabs>
-		
+
 	</view>
 </template>
 
@@ -54,6 +54,7 @@
 			return {
 				title: 'Hello1',
         iStatusBarHeight: 0,
+        statusList: [],
 				facility: [
 					{
 						icon: 'diaodeng-light',
@@ -68,12 +69,17 @@
 		},
 		onLoad() {
       this.iStatusBarHeight = uni.getSystemInfoSync().statusBarHeight
-			Api.appLogin({ loginName: '瑞昌市管理员', password: '111111' }).then(res => {
-				console.log(res)
-				// this.SET_USER_LOGIN_INFO(res.config.headers)
-			}).catch(err => {
-				console.log(err)
-			})
+			// Api.appLogin({ loginName: '瑞昌市管理员', password: '111111' }).then(res => {
+			// 	console.log(res)
+
+			// 	// this.SET_USER_LOGIN_INFO(res.config.headers)
+			// }).catch(err => {
+			// 	console.log(err)
+			// })
+
+      Api.GetSensorData().then(res => {
+        this.statusList = res
+      })
 		},
 		methods: {
 			...mapActions([SET_USER_LOGIN_INFO]),
@@ -89,6 +95,14 @@
 				});
 			},
 			handlerDownLoadFile(){
+        // plus.io.resolveLocalFileSystemURL('_downloads/', (entry) => {
+        //   const dir = entry.createReader()
+        //   dir.readEntries((files) => {
+        //     if (files.length) {
+        //       entry.removeRecursively(() => {})
+        //     }
+        //   })
+        // })
 				uni.downloadFile({
 					url: 'https://hxzj.teetron.com.cn/file/pdf/2021/8/16/PDF202108160148531002.pdf',
 					success(res) {
@@ -118,6 +132,19 @@
 						console.log(res)
 					}
 				})
+			},
+			handlerLoginOut() {
+				// Api.logout().then(res => {
+				// 	console.log(res)
+				// })
+        uni.chooseImage({
+          count: 10,
+          type: 'image',
+          success (res) {
+            // tempFilePath可以作为img标签的src属性显示图片
+            const tempFilePaths = res.tempFiles
+          }
+        })
 			}
 		}
 	}
@@ -129,7 +156,7 @@
 		padding: 0 38rpx;
 		&-cen{
 			border-radius: 15rpx;
-			height: 380rpx;
+			// height: 380rpx;
 			// background-image: linear-gradient( 135deg, #72EDF2 10%, #5151E5 100%);
 			background: #f3f7ff url(../../static/assets/room.png) no-repeat right;
 			background-size: 100%;

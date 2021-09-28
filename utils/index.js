@@ -20,7 +20,6 @@ export const createAllAreas = () => {
   return area.map(x => {
     const boundary = createPolygons(x.boundary)
     const centerPoint = getCenterPoint(boundary)
-    console.log(centerPoint)
     return {
       name: x.name,
       boundary,
@@ -103,17 +102,12 @@ export const calcCenterPoint = (longitude, latitude) => {
     poly.push(pu);
   }
 
-  //console.log(JSON.stringify(pointArray));
   const sortedLongitudeArray = poly.map(item => item.x).sort(); //首先对经度进行排序，红色部分是array中经度的名称
   const sortedLatitudeArray = poly.map(item => item.y).sort(); //对纬度进行排序，红色部分是array中纬度的名称
   const centerLongitude = ((parseFloat(sortedLongitudeArray[0]) + parseFloat(sortedLongitudeArray[
   sortedLongitudeArray.length - 1])) / 2).toFixed(14);
   const centerLatitude = ((parseFloat(sortedLatitudeArray[0]) + parseFloat(sortedLatitudeArray[sortedLatitudeArray.length - 1])) / 2).toFixed(14);
 
-  //如果经纬度在array中不是数字类型，需要转化为数字类型进行计算，如果是可以去掉parseFloat处理
-  //console.log(centerLongitude+"---"+centerLatitude);
-
-  // var sz=[centerLongitude,centerLatitude];
   return {
     x: centerLongitude,
     y: centerLatitude
@@ -132,12 +126,13 @@ export const getCenterPoint = (geoCoordinateList) => {
   //   return (s = s.concat(v))
   // }, [])
   const total = geoCoordinateListFlat.length
+
   let X = 0
   let Y = 0
   let Z = 0
   for (const g of geoCoordinateListFlat) {
-    const lat = g.lat * Math.PI / 180
-    const lon = g.lng * Math.PI / 180
+    const lat = g.latitude * Math.PI / 180
+    const lon = g.longitude * Math.PI / 180
     const x = Math.cos(lat) * Math.cos(lon)
     const y = Math.cos(lat) * Math.sin(lon)
     const z = Math.sin(lat)

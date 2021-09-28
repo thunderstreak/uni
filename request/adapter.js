@@ -7,19 +7,19 @@ const adapter = (config) => {
 	const fullUrl = buildFullPath(baseURL, url)
 
 	return new Promise((resolve, reject) => {
-	    uni.request({
-	        method: method.toUpperCase(),
-	        url: buildURL(fullUrl, params, paramsSerializer),
-	        header: headers,
-	        data,
-	        dataType,
-	        responseType,
-	        sslVerify,
-	        complete(response) {
-	            const res = { ...response, config }
-	            settle(resolve, reject, res)
-	        }
-	    })
+    uni.request({
+      method: method.toUpperCase(),
+      url: buildURL(fullUrl, params, paramsSerializer),
+      header: headers,
+      data,
+      dataType,
+      responseType,
+      sslVerify,
+      complete(response) {
+        const res = { ...response, config }
+        settle(resolve, reject, res)
+      }
+    })
 	})
 }
 export default adapter

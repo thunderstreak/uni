@@ -1,1 +1,4 @@
+export const SESSION_STORAGE = 'SESSION_STORAGE'
+export const LCOAl_STORAGE = 'LCOAl_STORAGE'
+
 export const LOGIN_INFO = 'LOGIN_INFO'
