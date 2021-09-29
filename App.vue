@@ -13,7 +13,7 @@
 </script>
 
 <style lang="less">
-	
+
 	.uni-tabbar { // tab背景
 		background: #fff !important; // tab背景图片或者渐变色，背景色和背景图片最多选择一个进行设置
 		box-shadow: 0 0 3rpx #ccc;

@@ -12,7 +12,13 @@
 			"style": {
 				"navigationBarTitleText": ""
 			}
-		}
+		},
+    {
+    	"path": "pages/list/index",
+    	"style": {
+    		"navigationBarTitleText": ""
+    	}
+    }
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -39,7 +45,13 @@
 				"iconPath": "static/assets/tabs/setting.png",
 				"selectedIconPath": "static/assets/tabs/setting-selected.png",
 				"text": "房间"
-			}
+			},
+      {
+      	"pagePath": "pages/list/index",
+      	"iconPath": "static/assets/tabs/setting.png",
+      	"selectedIconPath": "static/assets/tabs/setting-selected.png",
+      	"text": "list"
+      }
 		]
 	},
 	"condition" : { //模式配置，仅开发期间生效
