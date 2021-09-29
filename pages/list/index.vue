@@ -3,7 +3,7 @@
     <view class="index-search">
       <text class="index-search-text">通讯录</text>
       <view class="index-search-box">
-        <input type="text" class="index-search-box-input" placeholder="搜索" value="test" />
+        <input type="text" class="index-search-box-input" placeholder="搜索" value="" />
       </view>
     </view>
     <view class="index-res" id="list">
@@ -15,13 +15,13 @@
               <view class="index-res-view-box-li-info-left">
                 <text class="index-res-view-box-li-info-left-name">{{ iter.name }}</text>
                 <view class="index-res-view-box-li-info-left-desc">
-                  <text>{{ iter.desc.post }}</text>
-                  <text>{{ iter.desc.affiliation }}</text>
+                  <text class="index-res-view-box-li-info-left-desc-txt">{{ iter.desc.post }}</text>
+                  <text class="index-res-view-box-li-info-left-desc-txt">{{ iter.desc.affiliation }}</text>
                 </view>
               </view>
               <view class="index-res-view-box-li-info-right">
-                <text class="index-res-view-box-li-info-right-tel">{{ iter.tel }}</text>
-                <view class="index-res-view-box-li-info-right-collect">{{ iter.collect }}</view>
+                <text class="index-res-view-box-li-info-right-tel" @click="handlerCallPhone(iter)">{{ iter.tel }}</text>
+                <view :class="['index-res-view-box-li-info-right-collect', iter.collect ? 'collected' : '']" @click="handlerCollect(iter)"></view>
               </view>
             </view>
           </view>
@@ -151,11 +151,21 @@
         this.touchmove = false
         this.touchmoveIndex = -1
       },
+			
+			handlerCollect(iter) {
+				iter.collect = !iter.collect
+			},
+			
+			// 拨打电话
+			handlerCallPhone(iter) {
+				const { tel } = iter
+				makePhoneCall({ phoneNumber: tel });
+			}
     }
   }
 </script>
 
-<style lang="less">
+<style lang="scss">
   .index {
     display: flex;
     flex-direction: column;
@@ -164,9 +174,38 @@
     &-search {
       display: flex;
       justify-content: space-between;
-
-      &-box {
+			padding: 28rpx 50rpx;
+			border-bottom: 1rpx #3F8CFF solid;
+      &-text {
+				font-weight: 600;
+				color: #00041A;
+				font-size: 32rpx;
       }
+			&-box{
+				height: 56rpx;
+				width: 500rpx;
+				background: #EBF3FF;
+				border-radius: 28rpx;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 0 20rpx;
+				&::before{
+					content: '';
+					display: block;
+					width: 24rpx;
+					height: 24rpx;
+					background: url(../../static/icon/icon_search.png) no-repeat center;
+					background-size: 24rpx 24rpx;
+				}
+				&-input{
+					flex: 1;
+					font-weight: 500;
+					color: #3F8CFF;
+					font-size: 28rpx;
+					margin-left: 10rpx;
+				}
+			}
     }
 
     &-res {
@@ -177,28 +216,66 @@
         height: 100%;
         overflow: auto;
         &-box {
-          &-flag {}
+					background: #fff;
+          &-flag {
+						padding: 0 50rpx;
+						height: 30rpx;
+						line-height: 30rpx;
+						background: rgba(63, 140, 255, 0.1);
+						font-weight: 600;
+						color: #00041A;
+						font-size: 28rpx;
+					}
 
           &-li {
-            background: #fff;
-            padding: 0 30rpx;
+						margin: 0 50rpx;
+						border-bottom: 1rpx rgba(63, 140, 255, 0.2) solid;
+						&:last-child{
+							border: 0;
+						}
             &-info {
               display: flex;
               justify-content: space-between;
 
               &-left {
-                &-name {}
+                &-name {
+									font-weight: 400;
+									color: #00041A;
+									font-size: 28rpx;
+								}
 
-                &-desc {}
+                &-desc {
+									display: flex;
+									&-txt{
+										font-weight: 400;
+										color: #00041A;
+										font-size: 18rpx;
+										margin-right: 20rpx;
+									}
+								}
               }
 
               &-right {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                &-tel {}
+                &-tel {
+									font-weight: 400;
+									color: #00041A;
+									font-size: 28rpx;
+								}
 
-                &-collect {}
+                &-collect {
+									margin-left: 38rpx;
+									width: 40rpx;
+									height: 40rpx;
+									background: url(../../static/icon/icon_collection.png) no-repeat center;
+									background-size: 39rpx 37rpx;
+									&.collected{
+										background: url(../../static/icon/icon_collection_selected.png) no-repeat center;
+										background-size: 39rpx 37rpx;
+									}
+								}
               }
             }
           }
@@ -209,17 +286,19 @@
         top: 0;
         bottom: 0;
         right: 0;
-        width: 50rpx;
-        border: 1px red solid;
+        width: 25rpx;
         display: flex;
         flex-direction: column;
         justify-content: center;
 
         &-li {
-          width: 45rpx;
-          height: 45rpx;
-          line-height: 45rpx;
+          width: 25rpx;
+          height: 25rpx;
+          line-height: 25rpx;
           text-align: center;
+					font-weight: 600;
+					color: #3F8CFF;
+					font-size: 22rpx;
         }
       }
     }
