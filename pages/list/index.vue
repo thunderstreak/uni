@@ -40,7 +40,7 @@
 </template>
 
 <script>
-  const MENU_LIST = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  const MENU_LIST = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#'
   const DATA_LIST = MENU_LIST.split('').map(x => {
     return {
       flag: x,
@@ -53,15 +53,34 @@
           },
           tel: '18319430017',
           collect: false
+        },
+        {
+          name: '张三_' + x,
+          desc: {
+            post: '高管',
+            affiliation: 'companies'
+          },
+          tel: '18319430017',
+          collect: false
+        },
+        {
+          name: '张三_' + x,
+          desc: {
+            post: '高管',
+            affiliation: 'companies'
+          },
+          tel: '18319430017',
+          collect: false
         }
       ]
     }
   })
+  import { toastSuccess } from '@/utils/changeover.js'
   export default {
     name: 'index',
     data() {
       return {
-        indexMenu: `${MENU_LIST}#`,
+        indexMenu: MENU_LIST,
         indexData: DATA_LIST,
         scrollviewHigh: 0,
         intoView: '',
@@ -102,8 +121,13 @@
     },
     methods: {
       handlerLocation(index) {
-        uni.vibrateShort();
+        // uni?.vibrateShort();
         this.intoView = `view_${index}`
+        toastSuccess(this.indexData[index].flag)
+        // uni.showToast({
+        //   icon: 'none',
+        //   title: this.indexData[index].flag
+        // })
       },
       handlerTouchStart(e) {
         this.touchmove = true
@@ -187,11 +211,14 @@
         right: 0;
         width: 50rpx;
         border: 1px red solid;
-        &-li {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
-          width: 40rpx;
-          height: 40rpx;
-          line-height: 40rpx;
+        &-li {
+          width: 45rpx;
+          height: 45rpx;
+          line-height: 45rpx;
           text-align: center;
         }
       }
