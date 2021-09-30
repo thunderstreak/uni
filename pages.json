@@ -1,67 +1,78 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{
-			"path": "pages/home/index",
-			"style": {
-				"navigationBarTitleText": "",
-				"navigationBarBackgroundColor":""
-			}
-		},
-		{
-			"path": "pages/room/index",
-			"style": {
-				"navigationBarTitleText": ""
-			}
-		},
+  "pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
     {
-    	"path": "pages/list/index",
-    	"style": {
-    		"navigationBarTitleText": ""
-    	}
-    }
-	],
-	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "",
-		"navigationBarBackgroundColor": "#fff",
-		"backgroundColor": "#fff",
-		"navigationStyle":"custom"
-		// "app-plus": {"titleNView": true}
-	},
-	"tabBar": {
-		"color": "#7A7E83",
-		"selectedColor": "#007AFF",
-		"borderStyle": "black",
-		"backgroundColor": "#F8F8F8",
-		"list": [
-			{
-				"pagePath": "pages/home/index",
-				"iconPath": "static/assets/tabs/room.png",
-				"selectedIconPath": "static/assets/tabs/room-selected.png",
-				"text": "家庭"
-			},
-			{
-				"pagePath": "pages/room/index",
-				"iconPath": "static/assets/tabs/setting.png",
-				"selectedIconPath": "static/assets/tabs/setting-selected.png",
-				"text": "房间"
-			},
-      {
-      	"pagePath": "pages/list/index",
-      	"iconPath": "static/assets/tabs/setting.png",
-      	"selectedIconPath": "static/assets/tabs/setting-selected.png",
-      	"text": "list"
+      "path": "pages/home/index",
+      "style": {
+        "navigationBarTitleText": "",
+        "navigationBarBackgroundColor": ""
       }
-		]
-	},
-	"condition" : { //模式配置，仅开发期间生效
-		"current": 0, //当前激活的模式(list 的索引项)
-		"list": [
-			{
-				"name": "", //模式名称
-				"path": "", //启动页面，必选
-				"query": "" //启动参数，在页面的onLoad函数里面得到
-			}
-		]
-	}
+    },
+    {
+      "path": "pages/room/index",
+      "style": {
+        "navigationBarTitleText": ""
+      }
+    },
+    {
+      "path": "pages/list/index",
+      "style": {
+        "navigationBarTitleText": ""
+      }
+    },
+    {
+      "path": "pages/tab/index",
+      "style": {
+        "navigationBarTitleText": "",
+        "enablePullDownRefresh": false
+      }
+
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "",
+    "navigationBarBackgroundColor": "#fff",
+    "backgroundColor": "#fff",
+    "navigationStyle": "custom"
+    // "app-plus": {"titleNView": true}
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#007AFF",
+    "borderStyle": "black",
+    "backgroundColor": "#F8F8F8",
+    "list": [{
+        "pagePath": "pages/home/index",
+        "iconPath": "static/assets/tabs/room.png",
+        "selectedIconPath": "static/assets/tabs/room-selected.png",
+        "text": "家庭"
+      },
+      {
+        "pagePath": "pages/room/index",
+        "iconPath": "static/assets/tabs/setting.png",
+        "selectedIconPath": "static/assets/tabs/setting-selected.png",
+        "text": "房间"
+      },
+      {
+        "pagePath": "pages/list/index",
+        "iconPath": "static/assets/tabs/setting.png",
+        "selectedIconPath": "static/assets/tabs/setting-selected.png",
+        "text": "list"
+      },
+      {
+        "pagePath": "pages/tab/index",
+        "iconPath": "static/assets/tabs/setting.png",
+        "selectedIconPath": "static/assets/tabs/setting-selected.png",
+        "text": "tab"
+      }
+    ]
+  },
+  "condition": { //模式配置，仅开发期间生效
+    "current": 0, //当前激活的模式(list 的索引项)
+    "list": [{
+      "name": "", //模式名称
+      "path": "", //启动页面，必选
+      "query": "" //启动参数，在页面的onLoad函数里面得到
+    }]
+  }
 }

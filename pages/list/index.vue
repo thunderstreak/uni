@@ -151,11 +151,11 @@
         this.touchmove = false
         this.touchmoveIndex = -1
       },
-			
+
 			handlerCollect(iter) {
 				iter.collect = !iter.collect
 			},
-			
+
 			// 拨打电话
 			handlerCallPhone(iter) {
 				const { tel } = iter
@@ -165,7 +165,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="less">
   .index {
     display: flex;
     flex-direction: column;
@@ -195,7 +195,7 @@
 					display: block;
 					width: 24rpx;
 					height: 24rpx;
-					background: url(../../static/icon/icon_search.png) no-repeat center;
+					// background: url(../../static/icon/icon_search.png) no-repeat center;
 					background-size: 24rpx 24rpx;
 				}
 				&-input{
@@ -269,10 +269,10 @@
 									margin-left: 38rpx;
 									width: 40rpx;
 									height: 40rpx;
-									background: url(../../static/icon/icon_collection.png) no-repeat center;
+									// background: url(../../static/icon/icon_collection.png) no-repeat center;
 									background-size: 39rpx 37rpx;
 									&.collected{
-										background: url(../../static/icon/icon_collection_selected.png) no-repeat center;
+										// background: url(../../static/icon/icon_collection_selected.png) no-repeat center;
 										background-size: 39rpx 37rpx;
 									}
 								}

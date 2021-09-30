@@ -13,43 +13,23 @@
 					<view class="content-cen-box-p-num">{{ item.传感器数值 }}</view>
 					<view class="content-cen-box-p-txt">{{ item.传感器名称 }}</view>
 				</view>
-				<!-- <view class="content-cen-box-p">
-					<view class="content-cen-box-p-num">26.0°</view>
-					<view class="content-cen-box-p-txt">二氧化碳</view>
-				</view>
-				<view class="content-cen-box-p">
-					<view class="content-cen-box-p-num">26.0°</view>
-					<view class="content-cen-box-p-txt">挥发物</view>
-				</view>
-				<view class="content-cen-box-p">
-					<view class="content-cen-box-p-num">26.0°</view>
-					<view class="content-cen-box-p-txt">PM2.5</view>
-				</view>
-				<view class="content-cen-box-p">
-					<view class="content-cen-box-p-num">26.0°</view>
-					<view class="content-cen-box-p-txt">PM10</view>
-				</view>
-				<view class="content-cen-box-p">
-					<view class="content-cen-box-p-num"></view>
-					<view class="content-cen-box-p-txt"></view>
-				</view> -->
 			</view>
 		</view>
 
-		<Tabs></Tabs>
+		<LightList></LightList>
 
 	</view>
 </template>
 
 <script>
 	import HeaderTop from '@/components/headerTop.vue'
-	import Tabs from '@/components/tabs.vue'
+	import LightList from '@/components/lightList.vue'
 	import Api from '@/api/index'
 	import { mapGetters, mapActions } from 'vuex'
 	import { SET_USER_LOGIN_INFO, GET_USER_LOGIN_INFO } from '@/store/types/app'
 	import { LOGIN_INFO } from '@/constant/index.js'
 	export default {
-		components:{ HeaderTop, Tabs },
+		components:{ HeaderTop, LightList },
 		data() {
 			return {
 				title: 'Hello1',
