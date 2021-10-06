@@ -1,9 +1,10 @@
 <template>
 	<view class="content">
     <view :style="{ height: iStatusBarHeight + 'px'}"></view>
+    <!-- 顶部 -->
 		<HeaderTop title="家庭"/>
 
-		<view class="content-cen" @click="handlerDownLoadFile">
+		<view class="content-cen">
 			<view class="content-cen-weather">
 				<view class="content-cen-weather-icon"></view>
 				<view class="content-cen-weather-txt">晴</view>
@@ -16,7 +17,8 @@
 			</view>
 		</view>
 
-		<LightList></LightList>
+    <!-- 控制列表 -->
+		<LightList :list="lightList"></LightList>
 
 	</view>
 </template>
@@ -25,108 +27,27 @@
 	import HeaderTop from '@/components/headerTop.vue'
 	import LightList from '@/components/lightList.vue'
 	import Api from '@/api/index'
-	import { mapGetters, mapActions } from 'vuex'
-	import { SET_USER_LOGIN_INFO, GET_USER_LOGIN_INFO } from '@/store/types/app'
-	import { LOGIN_INFO } from '@/constant/index.js'
 	export default {
 		components:{ HeaderTop, LightList },
 		data() {
 			return {
-				title: 'Hello1',
         iStatusBarHeight: 0,
-        statusList: [],
-				facility: [
-					{
-						icon: 'diaodeng-light',
-						name: '客厅灯',
-						type: 'switch'
-					}
-				]
+				statusList: [],
+				lightList: []
 			}
 		},
 		computed: {
-		    ...mapGetters([GET_USER_LOGIN_INFO])
 		},
 		onLoad() {
+      // 适配顶部
       this.iStatusBarHeight = uni.getSystemInfoSync().statusBarHeight
-			// Api.appLogin({ loginName: '瑞昌市管理员', password: '111111' }).then(res => {
-			// 	console.log(res)
-
-			// 	// this.SET_USER_LOGIN_INFO(res.config.headers)
-			// }).catch(err => {
-			// 	console.log(err)
-			// })
-
+      // 获取数据
       Api.GetSensorData().then(res => {
         this.statusList = res
       })
 		},
 		methods: {
-			...mapActions([SET_USER_LOGIN_INFO]),
-			handlerGoto(){
-				uni.navigateTo({
-					url: '/pages/list/index?test=1',
-					success(res) {
-						console.log(res);
-					},
-					fail(err) {
-						console.log(err);
-					}
-				});
-			},
-			handlerDownLoadFile(){
-        // plus.io.resolveLocalFileSystemURL('_downloads/', (entry) => {
-        //   const dir = entry.createReader()
-        //   dir.readEntries((files) => {
-        //     if (files.length) {
-        //       entry.removeRecursively(() => {})
-        //     }
-        //   })
-        // })
-				uni.downloadFile({
-					url: 'https://hxzj.teetron.com.cn/file/pdf/2021/8/16/PDF202108160148531002.pdf',
-					success(res) {
-						uni.saveFile({
-							tempFilePath: res.tempFilePath,
-							success:(red)=> {
-								console.log(red.savedFilePath);
-								uni.showToast({
-									icon: 'none',
-									mask: true,
-									title: '文件已保存：' + red.savedFilePath, //保存路径
-									duration: 3000,
-								});
-								setTimeout(() => {
-									//打开文档查看
-									uni.openDocument({
-										filePath: red.savedFilePath,
-										success: function(res) {
-											console.log('打开文档成功');
-										}
-									});
-								},3000)
-							}
-						});
-					},
-					fail(e) {
-						console.log(res)
-					}
-				})
-			},
-			handlerLoginOut() {
-				// Api.logout().then(res => {
-				// 	console.log(res)
-				// })
-        uni.chooseImage({
-          count: 10,
-          type: 'image',
-          success (res) {
-            // tempFilePath可以作为img标签的src属性显示图片
-            const tempFilePaths = res.tempFiles
-          }
-        })
-			}
-		}
+    }
 	}
 </script>
 
