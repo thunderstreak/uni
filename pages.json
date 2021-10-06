@@ -16,20 +16,20 @@
     "navigationStyle": "custom"
     // "app-plus": {"titleNView": true}
   },
-  "tabBar": {
-    "color": "#7A7E83",
-    "selectedColor": "#007AFF",
-    "borderStyle": "black",
-    "backgroundColor": "#F8F8F8",
-    "list": [
-      {
-        "pagePath": "pages/home/index",
-        "iconPath": "static/assets/tabs/room.png",
-        "selectedIconPath": "static/assets/tabs/room-selected.png",
-        "text": "家庭"
-      }
-    ]
-  },
+  // "tabBar": {
+  //   "color": "#7A7E83",
+  //   "selectedColor": "#007AFF",
+  //   "borderStyle": "black",
+  //   "backgroundColor": "#F8F8F8",
+  //   "list": [
+  //     {
+  //       "pagePath": "pages/home/index",
+  //       "iconPath": "static/assets/tabs/room.png",
+  //       "selectedIconPath": "static/assets/tabs/room-selected.png",
+  //       "text": "家庭"
+  //     },
+  //   ]
+  // },
   "condition": { //模式配置，仅开发期间生效
     "current": 0, //当前激活的模式(list 的索引项)
     "list": [{

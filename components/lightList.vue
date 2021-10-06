@@ -4,14 +4,14 @@
 			<view class="tabs-box-li active">设备</view>
 		</view>
 		<view class="tabs-content">
-			<view class="tabs-content-box">
+			<view class="tabs-content-box" v-for="(item, index) in list" :key="index" @click="handlerSwitch(item)">
 				<view class="tabs-content-box-icon diaodeng-light"></view>
-				<text class="tabs-content-box-txt">客厅灯</text>
+				<text class="tabs-content-box-txt">{{ item.lightName }}</text>
 				<view class="tabs-content-box-switch">
-					<switch color="#55b3a9" checked />
+					<switch color="#55b3a9" :checked="!!item.lightState" />
 				</view>
 			</view>
-			<view class="tabs-content-box">
+			<!-- <view class="tabs-content-box">
 				<view class="tabs-content-box-icon zoulang-light"></view>
 				<text class="tabs-content-box-txt">走廊灯</text>
 				<view class="tabs-content-box-switch">
@@ -33,12 +33,13 @@
 					<button type="default" hover-class="tabs-content-box-operatior-active" class="tabs-content-box-operatior-btn tabs-content-box-operatior-shutdown"></button>
 					<button type="default" hover-class="tabs-content-box-operatior-active" class="tabs-content-box-operatior-btn tabs-content-box-operatior-plus"></button>
 				</view>
-			</view>
+			</view> -->
 		</view>
 	</view>
 </template>
 
 <script>
+  import Api from '@/api/index'
 	export default {
 		name:"lightList",
 		props: {
@@ -49,9 +50,23 @@
 		},
 		data() {
 			return {
-				
+
 			};
-		}
+		},
+    methods: {
+      // 开关控制, 更新灯状态
+      handlerSwitch(data) {
+        const { ioIndex, lightState, lightName } = data
+        const params = {
+          "key": ioIndex,
+          "lightName": lightName,
+          "lightState": !!lightState
+        }
+        Api.updateLightState(params).then(res => {
+          console.log(res)
+        })
+      }
+    }
 	}
 </script>
 
@@ -115,7 +130,7 @@
 				justify-content: space-between;
 				width: 60%;
 				transition: 0.25s;
-				
+
 				&-btn{
 					flex-shrink: 0;
 					width: 48rpx;

@@ -1,0 +1,133 @@
+<template>
+  <view class="map">
+    <map
+		class="map-box"
+		id="map"
+		ref="map"
+		:latitude="latitude"
+		:longitude="longitude"
+		enable-satellite
+		:polygons="polygons"
+		:scale="10"
+		:controls="controls"
+		:markers="markers"
+		@updated="handlerMapUpdate"
+		@regionchange="handlerMapChange"
+		@tap="handlerTapMap"
+		@poitap="handlerPointTap"
+		></map>
+  </view>
+</template>
+<script>
+import { createPolygons, isPointInPolygon, createAllAreas } from '@/utils/index'
+const boundary = createAllAreas()
+const polygons = boundary.map(x => {
+	return {
+		points: x.boundary,
+		strokeWidth: 1,
+		strokeColor: '#000',
+		fillColor: 'rgba(0,0,0,0.5)'
+	}
+})
+export default {
+	name: 'map',
+	data(){
+		return {
+			id:0, // 使用 marker点击事件 需要填写id
+			title: 'map',
+			latitude: 40.017516,
+			longitude: 116.595547,
+			mapContext: null,
+			controls: [
+				{
+					id: 1,
+					position: {
+						left: 10,
+						top: 10
+					},
+					iconPath: '../../static/assets/home/apple.png'
+				}
+			],
+			polygons: polygons,
+			markers: [
+				{
+					latitude: 39.909,
+					longitude: 116.39742,
+					iconPath: '../../../static/location.png'
+				},
+				{
+					latitude: 39.90,
+					longitude: 116.39,
+					iconPath: '../../../static/location.png'
+				},
+			]
+		}
+	},
+	onReady() {
+		this.mapContext = uni.createMapContext('map', this);
+	},
+	onLoad() {
+		// uni.chooseLocation({
+		//     success: function (res) {
+		//         console.log('位置名称：' + res.name);
+		//         console.log('详细地址：' + res.address);
+		//         console.log('纬度：' + res.latitude);
+		//         console.log('经度：' + res.longitude);
+		//     }
+		// });
+
+	},
+	mounted() {
+	},
+	methods: {
+		handlerMapUpdate() {
+			// 获取定位信息
+			uni.getLocation({
+				type: 'gcj02',
+				geocode: true,
+				success({latitude, longitude, address}){
+					console.log(latitude, longitude, address)
+					this.longitude = longitude
+					this.latitude = latitude
+				},
+				fail(err){
+					console.log(err)
+				}
+			})
+
+
+			// this.mapContext.moveToLocation({
+			// 	longitude: 113.00029267285154,
+			// 	latitude: 28.21026724320904,
+			// 	success(res) {
+			// 		console.log(res)
+			// 	},
+			// 	fail(err) {
+			// 		console.log(err)
+			// 	}
+			// })
+
+		},
+		handlerMapChange() {
+
+		},
+		handlerTapMap(e) {
+			const { detail: { latitude, longitude } } = e
+			const point = { latitude, longitude }
+			const res = isPointInPolygon(point, this.polygons[0].points)
+			console.log(res)
+		},
+		handlerPointTap(e) {
+			// console.log(e)
+		}
+	}
+}
+</script>
+<style lang="less">
+	.map{
+		flex: 1;
+		&-box{
+			flex: 1;
+		}
+	}
+</style>

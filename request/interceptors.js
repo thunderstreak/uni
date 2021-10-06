@@ -6,11 +6,6 @@ import { toastSuccess, toastError } from '@/utils/changeover'
 * interceptores request success handler
 **/
 export const requestConfigInterceptors = (config) => {
-	const { object = {} } = Storage.getStorageSync(LOGIN_INFO)
-  if (object?.accessToken) {
-    config.headers['Authorization'] = object?.accessToken
-  }
-
 	return config;
 }
 
@@ -25,12 +20,7 @@ export const requestErrorInterceptors = (error) => {
 * interceptors response error handler
 **/
 export const responseDataInterceptors = (response) => {
-	const { data } = response
-	if (data?.code === 0) {
-    toastSuccess(data?.message)
-		return Promise.reject(response)
-	}
-	return data;
+	return response;
 }
 
 /**

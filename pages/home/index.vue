@@ -7,12 +7,12 @@
 		<view class="content-cen">
 			<view class="content-cen-weather">
 				<view class="content-cen-weather-icon"></view>
-				<view class="content-cen-weather-txt">晴</view>
+				<view class="content-cen-weather-txt"></view>
 			</view>
 			<view class="content-cen-box">
-				<view class="content-cen-box-p" v-for="(item, index) in statusList" :key="index">
-					<view class="content-cen-box-p-num">{{ item.传感器数值 }}</view>
-					<view class="content-cen-box-p-txt">{{ item.传感器名称 }}</view>
+				<view class="content-cen-box-p" v-for="(item, index) in sensorList" :key="index">
+					<view class="content-cen-box-p-num">{{ item.sensorData }}</view>
+					<view class="content-cen-box-p-txt">{{ item.sensorName }}</view>
 				</view>
 			</view>
 		</view>
@@ -32,7 +32,7 @@
 		data() {
 			return {
         iStatusBarHeight: 0,
-				statusList: [],
+				sensorList: [],
 				lightList: []
 			}
 		},
@@ -41,12 +41,19 @@
 		onLoad() {
       // 适配顶部
       this.iStatusBarHeight = uni.getSystemInfoSync().statusBarHeight
-      // 获取数据
-      Api.GetSensorData().then(res => {
-        this.statusList = res
-      })
 		},
+    mounted() {
+      // 获取传感器数据
+      Api.sensorData().then(res => {
+        this.sensorList = res
+      })
+      // 获取灯光状态
+      Api.lightState().then(res => {
+        this.lightList = res
+      })
+    },
 		methods: {
+
     }
 	}
 </script>
