@@ -1,6 +1,7 @@
 <template>
   <list class="list" ref="list" :loadmoreoffset="25" @loadmore="handlerLoadMore">
-    <refresh class="list-refresh" @refresh="(e) => handlerFinish(e, 'refresh')" @pullingdown="(e) => handlerEvent(e, 'refresh')" :display="refresh ? 'show' : 'hide'">
+    <refresh class="list-refresh" @refresh="(e) => handlerFinish(e, 'refresh')"
+      @pullingdown="(e) => handlerEvent(e, 'refresh')" :display="refresh ? 'show' : 'hide'">
       <loading-indicator class="list-animation" animating></loading-indicator>
       <text class="list-txt">加载中...</text>
     </refresh>
@@ -12,7 +13,7 @@
         </view>
       </view>
     </header>
-    <cell class="list-view" v-for="(item, index) in indexData" :key="index">
+    <cell class="list-view" v-for="(item, index) in indexData" :key="index" :ref="`item_${index}`">
       <view class="list-view-li">
         <view class="list-view-li-info" v-for="(iter, idx) in item.list" :key="idx">
           <view class="list-view-li-info-left">
@@ -30,15 +31,24 @@
         </view>
       </view>
     </cell>
+    <view class="list-index" @touchstart="handlerTouchStart" @touchmove.stop.prevent="handlerTouchMove"
+      @touchend="handlerTouchEnd">
+      <view class="list-index-li" :id="`menu_${index}`" v-for="(item, index) in indexMenu" :key="index"
+        @click="handlerScrollTo">
+        <text class="list-index-li-txt">{{ item }}</text>
+      </view>
+    </view>
     <!-- <loading class="list-loading" @loading="(e) => handlerFinish(e, 'loading')" @pullingup="(e) => handlerEvent(e, 'loading')" :display="loading ? 'show' : 'hide'"> -->
     <loading class="list-loading" :display="loading ? 'show' : 'hide'">
       <loading-indicator class="list-animation" animating></loading-indicator>
       <text class="list-txt">加载中...</text>
     </loading>
+
   </list>
 </template>
 
 <script>
+  const dom = uni.requireNativePlugin('dom')
   const MENU_LIST = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#'
   const DATA_LIST = MENU_LIST.split('').map(x => {
     return {
@@ -105,32 +115,54 @@
       handlerEvent(e, type) {
         this[type] = true
       },
+
+      handlerScrollTo(e) {
+        const { id } = e.currentTarget
+        const index = id.split('_')[1]
+        const el = this.$refs[`item_${index}`][0]
+        dom.scrollToElement(el, {})
+      },
+
+      handlerTouchStart(e) {
+
+      },
+      handlerTouchMove(e) {
+        const {
+          currentTarget
+        } = e
+        console.log(currentTarget)
+      },
+      handlerTouchEnd(e) {},
     }
   }
 </script>
 
-<style lang="less">
+<style lang="scss">
   .list {
-    &-refresh{
+    &-refresh {
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
     }
-    &-loading{
+
+    &-loading {
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
     }
-    &-txt{
+
+    &-txt {
       text-align: center;
     }
-    &-animation{
+
+    &-animation {
       width: 30rpx;
       height: 30rpx;
       color: blue;
     }
+
     &-search {
       display: flex;
       flex-direction: row;
@@ -138,6 +170,7 @@
       padding: 28rpx 50rpx;
       border-bottom: 1rpx #3F8CFF solid;
       background-color: #fff;
+
       &-text {
         font-weight: 600;
         color: #00041A;
@@ -175,6 +208,7 @@
 
     &-view {
       padding: 0 25rpx;
+
       &-li {
 
         &:last-child {
@@ -232,6 +266,32 @@
               }
             }
           }
+        }
+      }
+    }
+
+    &-index {
+      position: fixed;
+      z-index: 10;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 25rpx;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      &-li {
+        width: 25rpx;
+        height: 25rpx;
+        line-height: 25rpx;
+        text-align: center;
+
+        &-txt {
+          font-weight: 600;
+          color: #3F8CFF;
+          font-size: 22rpx;
         }
       }
     }
