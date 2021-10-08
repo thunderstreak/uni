@@ -1,0 +1,239 @@
+<template>
+  <list class="list" ref="list" :loadmoreoffset="25" @loadmore="handlerLoadMore">
+    <refresh class="list-refresh" @refresh="(e) => handlerFinish(e, 'refresh')" @pullingdown="(e) => handlerEvent(e, 'refresh')" :display="refresh ? 'show' : 'hide'">
+      <loading-indicator class="list-animation" animating></loading-indicator>
+      <text class="list-txt">加载中...</text>
+    </refresh>
+    <header>
+      <view class="list-search">
+        <text class="list-search-text">通讯录</text>
+        <view class="list-search-box">
+          <input type="text" class="list-search-box-input" placeholder="搜索" value="" />
+        </view>
+      </view>
+    </header>
+    <cell class="list-view" v-for="(item, index) in indexData" :key="index">
+      <view class="list-view-li">
+        <view class="list-view-li-info" v-for="(iter, idx) in item.list" :key="idx">
+          <view class="list-view-li-info-left">
+            <text class="list-view-li-info-left-name">{{ iter.name }}</text>
+            <view class="list-view-li-info-left-desc">
+              <text class="list-view-li-info-left-desc-txt">{{ iter.desc.post }}</text>
+              <text class="list-view-li-info-left-desc-txt">{{ iter.desc.affiliation }}</text>
+            </view>
+          </view>
+          <view class="list-view-li-info-right">
+            <text class="list-view-li-info-right-tel" @click="handlerCallPhone(iter)">{{ iter.tel }}</text>
+            <view :class="['list-view-li-info-right-collect', iter.collect ? 'collected' : '']"
+              @click="handlerCollect(iter)"></view>
+          </view>
+        </view>
+      </view>
+    </cell>
+    <!-- <loading class="list-loading" @loading="(e) => handlerFinish(e, 'loading')" @pullingup="(e) => handlerEvent(e, 'loading')" :display="loading ? 'show' : 'hide'"> -->
+    <loading class="list-loading" :display="loading ? 'show' : 'hide'">
+      <loading-indicator class="list-animation" animating></loading-indicator>
+      <text class="list-txt">加载中...</text>
+    </loading>
+  </list>
+</template>
+
+<script>
+  const MENU_LIST = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#'
+  const DATA_LIST = MENU_LIST.split('').map(x => {
+    return {
+      flag: x,
+      list: [{
+          name: '张三' + x,
+          desc: {
+            post: '高管',
+            affiliation: 'companies'
+          },
+          tel: '18319430017',
+          collect: false
+        },
+        {
+          name: '张三_' + x,
+          desc: {
+            post: '高管',
+            affiliation: 'companies'
+          },
+          tel: '18319430017',
+          collect: false
+        },
+        {
+          name: '张三_' + x,
+          desc: {
+            post: '高管',
+            affiliation: 'companies'
+          },
+          tel: '18319430017',
+          collect: false
+        }
+      ]
+    }
+  })
+
+  import Tabs from '@/components/tabs.vue'
+  import TabPane from '@/components/tabPane.vue'
+  export default {
+    components: {
+      Tabs,
+      TabPane
+    },
+    data() {
+      return {
+        indexMenu: MENU_LIST,
+        indexData: DATA_LIST,
+        refresh: false,
+        loading: false,
+      }
+    },
+    methods: {
+      handlerLoadMore(e) {
+        this.loading = true
+        setTimeout(() => {
+          this.indexData.push(...DATA_LIST)
+          this.loading = false
+        }, 1500)
+      },
+      handlerFinish(e, type) {
+        setTimeout(() => {
+          this[type] = false
+        }, 3000)
+      },
+      handlerEvent(e, type) {
+        this[type] = true
+      },
+    }
+  }
+</script>
+
+<style lang="less">
+  .list {
+    &-refresh{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+    &-loading{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+    &-txt{
+      text-align: center;
+    }
+    &-animation{
+      width: 30rpx;
+      height: 30rpx;
+      color: blue;
+    }
+    &-search {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 28rpx 50rpx;
+      border-bottom: 1rpx #3F8CFF solid;
+      background-color: #fff;
+      &-text {
+        font-weight: 600;
+        color: #00041A;
+        font-size: 32rpx;
+      }
+
+      &-box {
+        height: 56rpx;
+        width: 500rpx;
+        background: #EBF3FF;
+        border-radius: 28rpx;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20rpx;
+
+        &::before {
+          // content: '';
+          display: flex;
+          width: 24rpx;
+          height: 24rpx;
+          // background: url(../../static/icon/icon_search.png) no-repeat center;
+          // background-size: 24rpx 24rpx;
+        }
+
+        &-input {
+          flex: 1;
+          font-weight: 500;
+          color: #3F8CFF;
+          font-size: 28rpx;
+          margin-left: 10rpx;
+        }
+      }
+    }
+
+    &-view {
+      padding: 0 25rpx;
+      &-li {
+
+        &:last-child {
+          border: 0;
+        }
+
+        &-info {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          border-bottom: 1rpx rgba(63, 140, 255, 0.2) solid;
+
+          &-left {
+            &-name {
+              font-weight: 400;
+              color: #00041A;
+              font-size: 28rpx;
+            }
+
+            &-desc {
+              display: flex;
+              flex-direction: row;
+
+              &-txt {
+                font-weight: 400;
+                color: #00041A;
+                font-size: 18rpx;
+                margin-right: 20rpx;
+              }
+            }
+          }
+
+          &-right {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+            &-tel {
+              font-weight: 400;
+              color: #00041A;
+              font-size: 28rpx;
+            }
+
+            &-collect {
+              margin-left: 38rpx;
+              width: 40rpx;
+              height: 40rpx;
+
+              // background: url(../../static/icon/icon_collection.png) no-repeat center;
+              // background-size: 39rpx 37rpx;
+              &.collected {
+                // background: url(../../static/icon/icon_collection_selected.png) no-repeat center;
+                // background-size: 39rpx 37rpx;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+</style>

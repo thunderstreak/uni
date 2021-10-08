@@ -1,14 +1,20 @@
 <template>
   <view class="index">
-    <view class="index-search">
+    <!-- <view class="index-search">
       <text class="index-search-text">通讯录</text>
       <view class="index-search-box">
         <input type="text" class="index-search-box-input" placeholder="搜索" value="" />
       </view>
-    </view>
+    </view> -->
     <view class="index-res" id="list">
-      <scroll-view class="index-res-view" scroll-y :scroll-into-view="intoView" :style="{ height: `${scrollviewHigh}px`}">
-        <view class="index-res-view-box" :id="`view_${index}`" v-for="(item, index) in indexData" :key="index">
+
+      <list class="index-res-view">
+        <refresh display="show">
+          <text>Refreshing...</text>
+          <loading-indicator></loading-indicator>
+        </refresh>
+        <header>1111</header>
+        <cell class="index-res-view-box" :id="`view_${index}`" v-for="(item, index) in indexData" :key="item.flag">
           <view class="index-res-view-box-flag">{{ item.flag }}</view>
           <view class="index-res-view-box-li" v-for="(iter, idx) in item.list" :key="idx">
             <view class="index-res-view-box-li-info">
@@ -25,8 +31,8 @@
               </view>
             </view>
           </view>
-        </view>
-      </scroll-view>
+        </cell>
+      </list>
       <view
         class="index-res-list"
         @touchstart="handlerTouchStart"
@@ -93,31 +99,31 @@
     },
     onReady() {
       // 计算屏幕剩余高度  填补剩余高度
-      uni.getSystemInfo({
-        success: (res) => {
-          const { windowHeight } = res
-          this.phoneHeight = res.windowHeight;
-          // 计算组件的高度
-          let view = uni.createSelectorQuery().select('.index-search');
-          view.boundingClientRect(data => {
-            const { height } = data
-            this.scrollviewHigh = windowHeight - height;
-          }).exec();
-        }
-      });
+      // uni.getSystemInfo({
+      //   success: (res) => {
+      //     const { windowHeight } = res
+      //     this.phoneHeight = res.windowHeight;
+      //     // 计算组件的高度
+      //     let view = uni.createSelectorQuery().select('.index-search');
+      //     view.boundingClientRect(data => {
+      //       const { height } = data
+      //       this.scrollviewHigh = windowHeight - height;
+      //     }).exec();
+      //   }
+      // });
     },
     mounted() {
-      setTimeout(() => {
-        uni.createSelectorQuery()
-        	.in(this)
-        	.select('#list')
-        	.boundingClientRect()
-        	.exec(ret => {
-        		this.winOffsetY = ret[0].top
-        		this.winHeight = ret[0].height
-        		this.itemHeight = this.winHeight / this.indexData.length
-        	})
-      }, 100)
+      // setTimeout(() => {
+      //   uni.createSelectorQuery()
+      //   	.in(this)
+      //   	.select('#list')
+      //   	.boundingClientRect()
+      //   	.exec(ret => {
+      //   		this.winOffsetY = ret[0].top
+      //   		this.winHeight = ret[0].height
+      //   		this.itemHeight = this.winHeight / this.indexData.length
+      //   	})
+      // }, 1000)
     },
     methods: {
       handlerLocation(index) {
@@ -173,6 +179,7 @@
 
     &-search {
       display: flex;
+      flex-direction: row;
       justify-content: space-between;
 			padding: 28rpx 50rpx;
 			border-bottom: 1rpx #3F8CFF solid;
@@ -191,12 +198,12 @@
 				align-items: center;
 				padding: 0 20rpx;
 				&::before{
-					content: '';
-					display: block;
+					// content: '';
+					display: flex;
 					width: 24rpx;
 					height: 24rpx;
 					// background: url(../../static/icon/icon_search.png) no-repeat center;
-					background-size: 24rpx 24rpx;
+					// background-size: 24rpx 24rpx;
 				}
 				&-input{
 					flex: 1;
@@ -209,12 +216,13 @@
     }
 
     &-res {
+      flex: 1;
       background: #f1f1f1;
       position: relative;
       // overflow-y: scroll;
       &-view{
-        height: 100%;
-        overflow: auto;
+        // height: 100%;
+        // overflow-y: scroll;
         &-box {
 					background: #fff;
           &-flag {
@@ -270,10 +278,10 @@
 									width: 40rpx;
 									height: 40rpx;
 									// background: url(../../static/icon/icon_collection.png) no-repeat center;
-									background-size: 39rpx 37rpx;
+									// background-size: 39rpx 37rpx;
 									&.collected{
 										// background: url(../../static/icon/icon_collection_selected.png) no-repeat center;
-										background-size: 39rpx 37rpx;
+										// background-size: 39rpx 37rpx;
 									}
 								}
               }
