@@ -6,6 +6,10 @@ import { toastSuccess, toastError } from '@/utils/changeover'
 * interceptores request success handler
 **/
 export const requestConfigInterceptors = (config) => {
+  const host = Storage.getStorageSync('host')
+  if (host) {
+    config.baseURL = host
+  }
 	return config;
 }
 
@@ -20,7 +24,12 @@ export const requestErrorInterceptors = (error) => {
 * interceptors response error handler
 **/
 export const responseDataInterceptors = (response) => {
-	return response;
+  const { data = {}, errMsg } = response
+  if (data?.code === 500) {
+  	toastSuccess(data?.message)
+  	return Promise.reject(response)
+  }
+  return data;
 }
 
 /**

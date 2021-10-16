@@ -1,6 +1,13 @@
 {
   "pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
     {
+      "path" : "pages/setting/index",
+      "style" : {
+        "navigationBarTitleText": "",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
       "path": "pages/home/index",
       "style": {
         "navigationBarTitleText": "",
@@ -28,6 +35,12 @@
   //       "selectedIconPath": "static/assets/tabs/room-selected.png",
   //       "text": "家庭"
   //     },
+  //     {
+  //       "pagePath": "pages/setting/index",
+  //       "iconPath": "static/assets/tabs/room.png",
+  //       "selectedIconPath": "static/assets/tabs/room-selected.png",
+  //       "text": "设置"
+  //     }
   //   ]
   // },
   "condition": { //模式配置，仅开发期间生效

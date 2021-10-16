@@ -4,36 +4,13 @@
 			<view class="tabs-box-li active">设备</view>
 		</view>
 		<view class="tabs-content">
-			<view class="tabs-content-box" v-for="(item, index) in list" :key="index" @click="handlerSwitch(item)">
-				<view class="tabs-content-box-icon diaodeng-light"></view>
+			<view class="tabs-content-box" v-for="(item, index) in list" :key="index">
+				<view :class="['tabs-content-box-icon', `light${Math.ceil(Math.random() * 3)}`]"></view>
 				<text class="tabs-content-box-txt">{{ item.lightName }}</text>
 				<view class="tabs-content-box-switch">
-					<switch color="#55b3a9" :checked="!!item.lightState" />
+					<switch color="#55b3a9" :checked="!!item.lightState" @change="(e) => handlerSwitch(e, item)"/>
 				</view>
 			</view>
-			<!-- <view class="tabs-content-box">
-				<view class="tabs-content-box-icon zoulang-light"></view>
-				<text class="tabs-content-box-txt">走廊灯</text>
-				<view class="tabs-content-box-switch">
-					<switch color="#55b3a9" checked />
-				</view>
-			</view>
-			<view class="tabs-content-box">
-				<view class="tabs-content-box-icon chufnag-light"></view>
-				<text class="tabs-content-box-txt">厨房灯</text>
-				<view class="tabs-content-box-switch">
-					<switch color="#55b3a9" checked />
-				</view>
-			</view>
-			<view class="tabs-content-box">
-				<view class="tabs-content-box-icon kongtiao"></view>
-				<text class="tabs-content-box-txt">空调</text>
-				<view class="tabs-content-box-operatior">
-					<button type="default" hover-class="tabs-content-box-operatior-active" class="tabs-content-box-operatior-btn tabs-content-box-operatior-subtract"></button>
-					<button type="default" hover-class="tabs-content-box-operatior-active" class="tabs-content-box-operatior-btn tabs-content-box-operatior-shutdown"></button>
-					<button type="default" hover-class="tabs-content-box-operatior-active" class="tabs-content-box-operatior-btn tabs-content-box-operatior-plus"></button>
-				</view>
-			</view> -->
 		</view>
 	</view>
 </template>
@@ -55,12 +32,13 @@
 		},
     methods: {
       // 开关控制, 更新灯状态
-      handlerSwitch(data) {
+      handlerSwitch(e, data) {
+        const { value } = e.detail
         const { ioIndex, lightState, lightName } = data
         const params = {
-          "key": ioIndex,
+          "key": '杨晶',
           "lightName": lightName,
-          "lightState": !!lightState
+          "lightState": Number(value)
         }
         Api.updateLightState(params).then(res => {
           console.log(res)
@@ -115,7 +93,7 @@
 			flex-direction: column;
 			&-switch{
 				::v-deep .uni-switch-wrapper{
-					transform: scale(0.65);
+					transform: scale(0.80);
 				}
 			}
 			&-icon{

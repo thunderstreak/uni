@@ -9,7 +9,7 @@ const service = axios.create({
 	withCredentials: true,
 	crossDomain: true,
 	baseURL: CONFIG[NODE_ENV].BASE_URL,
-	timeout: 6000
+	timeout: 60000
 })
 
 // request interceptor

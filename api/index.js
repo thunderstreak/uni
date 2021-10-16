@@ -10,16 +10,23 @@ const setLoadingDecorator = getLoadingDecorator(showLoading, hideLoading)
 
 export default new class Api {
   // 更新灯光状态
+  @setLoadingDecorator
+  @setMessageDecorator({ msgKey: 'message' })
   updateLightState = wrapperPost('/api/v1/light/updateLightState')
 
   // 获取灯光状态
-  @getMockLightState
-  lightState = wrapperPost('/api/v1/light/lightState')
+  // @getMockLightState
+  @setMessageDecorator({ msgKey: 'message' })
+  lightState = wrapperGet('/api/v1/light/lightState')
 
   // 获取传感器状态
-  @getMockSensorData
+  // @getMockSensorData
+  @setMessageDecorator({ msgKey: 'message' })
   sensorData = wrapperGet('/api/v1/sensor/sensorData')
 
   // 获取开关状态
   switchAllState = wrapperGet('/api/v1/switch/switchAllState')
+
+  // test
+  test = wrapperPostParams('/restful/v1/aky/appLogin')
 }()

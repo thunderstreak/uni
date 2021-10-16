@@ -1,7 +1,15 @@
 <script>
+  import Storage from '@/utils/storage.js'
+  import { switchTab, navigateTo } from '@/utils/changeover.js'
 	export default {
 		onLaunch: function() {
 			console.log('App Launch')
+      const host = Storage.getStorageSync('host')
+      if (host) {
+      	navigateTo({ url: '/pages/home/index' })
+      } else {
+      	navigateTo({ url: '/pages/setting/index' })
+      }
 		},
 		onShow: function() {
 			console.log('App Show')

@@ -3,9 +3,9 @@ export const PRODUCTION = 'production'
 
 export const CONFIG = {
 	[DEVELOPMENT]: {
-		BASE_URL: 'http://127.0.0.1/'
+		BASE_URL: 'http:120.55.89.42:8889'
 	},
 	[PRODUCTION]: {
-		BASE_URL: 'http://127.0.0.1/'
+		BASE_URL: 'http:120.55.89.42:8889'
 	}
 }
