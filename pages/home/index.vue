@@ -18,7 +18,7 @@
 		</view>
 
     <!-- 控制列表 -->
-		<LightList :list="lightList"></LightList>
+		<LightList/>
 
 	</view>
 </template>
@@ -43,17 +43,15 @@
       this.iStatusBarHeight = uni.getSystemInfoSync().statusBarHeight
 		},
     mounted() {
-      // 获取传感器数据
-      Api.sensorData().then(res => {
-        this.sensorList = res
-      })
-      // 获取灯光状态
-      Api.lightState().then(res => {
-        this.lightList = res
-      })
+      this.getSensorData()
     },
 		methods: {
-
+      getSensorData() {
+        // 获取传感器数据
+        Api.sensorData().then(res => {
+          this.sensorList = res
+        })
+      },
     }
 	}
 </script>

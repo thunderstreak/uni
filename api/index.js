@@ -2,7 +2,7 @@ import { wrapperPost, wrapperGet, wrapperPostParams } from '@/request/index'
 import { setResponseDataDecorator, getMessageDecorator, getLoadingDecorator } from '@/decorator/apply'
 import { handlerGetLoginInfoCache, handlerSetLoginInfoCache } from './handler/index'
 import { toastSuccess, toastError, showLoading, hideLoading } from '@/utils/changeover'
-import { getMockSensorData, getMockLightState } from './mock.js'
+import { getMockSensorData, getMockLightState, getMockUpdateLight } from './mock.js'
 
 // set response tips
 const setMessageDecorator = getMessageDecorator({ success: toastSuccess, error: toastError })
@@ -10,6 +10,7 @@ const setLoadingDecorator = getLoadingDecorator(showLoading, hideLoading)
 
 export default new class Api {
   // 更新灯光状态
+  // @getMockUpdateLight
   @setLoadingDecorator
   @setMessageDecorator({ msgKey: 'message' })
   updateLightState = wrapperPost('/api/v1/light/updateLightState')
@@ -27,6 +28,4 @@ export default new class Api {
   // 获取开关状态
   switchAllState = wrapperGet('/api/v1/switch/switchAllState')
 
-  // test
-  test = wrapperPostParams('/restful/v1/aky/appLogin')
 }()

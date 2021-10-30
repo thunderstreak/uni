@@ -1,8 +1,9 @@
-import { getMockDecorator } from '@/decorator/apply'
+import {
+  getMockDecorator
+} from '@/decorator/apply'
 
 export const getMockSensorData = getMockDecorator(() => {
-  return Promise.resolve([
-    {
+  return Promise.resolve([{
       "sensorData": 19,
       "sensorName": "温度"
     },
@@ -34,47 +35,52 @@ export const getMockSensorData = getMockDecorator(() => {
 })
 
 export const getMockLightState = getMockDecorator(() => {
-  return Promise.resolve([
-	{
-		"ioIndex": 0,
-		"lightName": "主卧灯",
-		"lightState": 0
-	},
-	{
-		"ioIndex": 1,
-		"lightName": "次卧灯",
-		"lightState": 0
-	},
-	{
-		"ioIndex": 2,
-		"lightName": "客厅灯",
-		"lightState": 0
-	},
-	{
-		"ioIndex": 3,
-		"lightName": "玄关灯",
-		"lightState": 0
-	},
-	{
-		"ioIndex": 4,
-		"lightName": "厨房灯",
-		"lightState": 0
-	},
-	{
-		"ioIndex": 5,
-		"lightName": "楼梯灯",
-		"lightState": 0
-	},
-	{
-		"ioIndex": 6,
-		"lightName": "二楼灯",
-		"lightState": 0
-	},
-	{
-		"ioIndex": 7,
-		"lightName": "备用",
-		"lightState": 0
-	}
-])
+  return Promise.resolve([{
+      "ioIndex": 0,
+      "lightName": "主卧灯",
+      "lightState": 0
+    },
+    {
+      "ioIndex": 1,
+      "lightName": "次卧灯",
+      "lightState": 0
+    },
+    {
+      "ioIndex": 2,
+      "lightName": "客厅灯",
+      "lightState": 0
+    },
+    {
+      "ioIndex": 3,
+      "lightName": "玄关灯",
+      "lightState": 0
+    },
+    {
+      "ioIndex": 4,
+      "lightName": "厨房灯",
+      "lightState": 0
+    },
+    {
+      "ioIndex": 5,
+      "lightName": "楼梯灯",
+      "lightState": 0
+    },
+    {
+      "ioIndex": 6,
+      "lightName": "二楼灯",
+      "lightState": 0
+    },
+    {
+      "ioIndex": 7,
+      "lightName": "备用",
+      "lightState": 0
+    }
+  ])
 })
 
+export const getMockUpdateLight = getMockDecorator(() => {
+  return Promise.resolve({
+	"code": "500",
+	"message": "Key错误,不能操控设备"
+})
+})
