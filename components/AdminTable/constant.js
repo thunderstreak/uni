@@ -14,6 +14,7 @@ export const VIEW = 'view' // 查看
 export const DELETE = 'delete' // 删除
 export const EXPORT = 'export' // 导出
 export const IMPORT = 'import' // 导入
+export const CHECKBOX = 'checkbox' // 导入
 
 export const CHANGE = 'change' // 事件类型
 export const BLUR = 'blur' // 事件类型
@@ -43,10 +44,8 @@ export const INIT_PAGE_CONFIG = {
     list: 'list'
   }
 }
-export const INIT_QUERY_CONFIG = {
-  labelWidth: '110px',
-  size: 'small'
-}
-export const INIT_TABLE_CONFIG = {
-  size: 'small'
+export const INIT_PAGE_DATA = {
+  currentPage: 1, // 当前页
+  pageSize: 10, // 当前条数
+  total: 0// 总条数
 }
