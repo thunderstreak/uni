@@ -224,15 +224,105 @@ var render = function() {
     "v-uni-view",
     { staticClass: _vm._$g(0, "sc"), attrs: { _i: 0 } },
     [
-      _c("v-uni-input", {
-        staticClass: _vm._$g(1, "sc"),
-        attrs: { type: "text", placeholder: "设置host", _i: 1 },
-        on: {
-          confirm: function($event) {
-            return _vm.$handleViewEvent($event)
+      _c(
+        "v-uni-form",
+        {
+          staticClass: _vm._$g(1, "sc"),
+          attrs: { _i: 1 },
+          on: {
+            submit: function($event) {
+              return _vm.$handleViewEvent($event)
+            },
+            reset: function($event) {
+              return _vm.$handleViewEvent($event)
+            }
           }
-        }
-      })
+        },
+        [
+          _c(
+            "v-uni-view",
+            { staticClass: _vm._$g(2, "sc"), attrs: { _i: 2 } },
+            [
+              _c("v-uni-input", {
+                staticClass: _vm._$g(3, "sc"),
+                attrs: {
+                  type: "text",
+                  name: "user",
+                  placeholder: "设置用户",
+                  value: _vm._$g(3, "a-value"),
+                  _i: 3
+                }
+              })
+            ],
+            1
+          ),
+          _c(
+            "v-uni-view",
+            { staticClass: _vm._$g(4, "sc"), attrs: { _i: 4 } },
+            [
+              _c("v-uni-input", {
+                staticClass: _vm._$g(5, "sc"),
+                attrs: {
+                  type: "text",
+                  name: "ip",
+                  placeholder: "设置ip",
+                  value: _vm._$g(5, "a-value"),
+                  _i: 5
+                }
+              })
+            ],
+            1
+          ),
+          _c(
+            "v-uni-view",
+            { staticClass: _vm._$g(6, "sc"), attrs: { _i: 6 } },
+            [
+              _c("v-uni-input", {
+                staticClass: _vm._$g(7, "sc"),
+                attrs: {
+                  type: "text",
+                  name: "ws",
+                  placeholder: "设置ws",
+                  value: _vm._$g(7, "a-value"),
+                  _i: 7
+                }
+              })
+            ],
+            1
+          ),
+          _c(
+            "v-uni-view",
+            { staticClass: _vm._$g(8, "sc"), attrs: { _i: 8 } },
+            [
+              _c(
+                "v-uni-button",
+                {
+                  staticClass: _vm._$g(9, "sc"),
+                  attrs: { "form-type": "submit", _i: 9 }
+                },
+                [_vm._v("确定")]
+              )
+            ],
+            1
+          ),
+          _c(
+            "v-uni-view",
+            { staticClass: _vm._$g(10, "sc"), attrs: { _i: 10 } },
+            [
+              _c(
+                "v-uni-button",
+                {
+                  staticClass: _vm._$g(11, "sc"),
+                  attrs: { type: "default", "form-type": "reset", _i: 11 }
+                },
+                [_vm._v("重置")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
     ],
     1
   )
@@ -325,7 +415,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ./node_modules/css-loader/dist/runtime/api.js */ 10);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".container {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  min-height: 100vh;\n}\n.container .input {\n  padding: 0 15rpx;\n  width: 500rpx;\n  height: 80rpx;\n  border-radius: 10rpx;\n  border: 1px #c1c1c1 solid;\n}\n", ""]);
+exports.push([module.i, ".container {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  min-height: 100vh;\n}\n.container .input-box {\n  margin: 10rpx 0;\n}\n.container .input-box-ipt {\n  padding: 0 15rpx;\n  width: 500rpx;\n  height: 80rpx;\n  border-radius: 10rpx;\n  border: 1px #c1c1c1 solid;\n}\n.container .input-box-btn {\n  font-size: 30rpx;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -1498,20 +1588,20 @@ var render = function() {
       ]),
       _c(
         "v-uni-view",
-        { staticClass: _vm._$g(3, "sc"), attrs: { _i: 3 } },
+        {
+          staticClass: _vm._$g(3, "sc"),
+          attrs: { _i: 3 },
+          on: {
+            click: function($event) {
+              return _vm.$handleViewEvent($event)
+            }
+          }
+        },
         [
           _c("v-uni-switch", {
-            attrs: {
-              color: "#55b3a9",
-              checked: _vm._$g(4, "a-checked"),
-              _i: 4
-            },
-            on: {
-              change: function($event) {
-                return _vm.$handleViewEvent($event)
-              }
-            }
-          })
+            attrs: { color: "#55b3a9", checked: _vm._$g(4, "a-checked"), _i: 4 }
+          }),
+          _c("v-uni-view", { staticClass: _vm._$g(5, "sc"), attrs: { _i: 5 } })
         ],
         1
       )
@@ -1614,7 +1704,7 @@ var ___CSS_LOADER_URL_REPLACEMENT_0___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_
 var ___CSS_LOADER_URL_REPLACEMENT_1___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_1___);
 var ___CSS_LOADER_URL_REPLACEMENT_2___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_2___);
 // Module
-exports.push([module.i, ".box[data-v-6bc2fbc4] {\n  margin: 15rpx 0;\n  width: 320rpx;\n  height: 300rpx;\n  box-shadow: 0 0 10rpx #eff3f3;\n  border-radius: 10rpx;\n  display: flex;\n  align-items: center;\n  align-content: center;\n  justify-content: center;\n  flex-direction: column;\n}\n.box-switch[data-v-6bc2fbc4]  .uni-switch-wrapper {\n  -webkit-transform: scale(0.8);\n          transform: scale(0.8);\n}\n.box-icon[data-v-6bc2fbc4] {\n  width: 48rpx;\n  height: 48rpx;\n}\n.box-txt[data-v-6bc2fbc4] {\n  font-size: 28rpx;\n}\n.box-operatior[data-v-6bc2fbc4] {\n  display: flex;\n  justify-content: space-between;\n  width: 60%;\n  transition: 0.25s;\n}\n.box-operatior-btn[data-v-6bc2fbc4] {\n  flex-shrink: 0;\n  width: 48rpx;\n  height: 48rpx;\n  border-radius: 0;\n  background-color: #fff !important;\n}\n.box-operatior-btn[data-v-6bc2fbc4]::after {\n  border: none;\n}\n.box-operatior-active[data-v-6bc2fbc4] {\n  background-color: #41aaa0 !important;\n  border-radius: 50% !important;\n  width: 48rpx;\n  height: 48rpx;\n}\n.box-operatior-plus[data-v-6bc2fbc4] {\n  width: 48rpx;\n  height: 48rpx;\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ") no-repeat center;\n  background-size: 48rpx;\n}\n.box-operatior-shutdown[data-v-6bc2fbc4] {\n  width: 48rpx;\n  height: 48rpx;\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ") no-repeat center;\n  background-size: 48rpx;\n}\n.box-operatior-subtract[data-v-6bc2fbc4] {\n  width: 48rpx;\n  height: 48rpx;\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_2___ + ") no-repeat center;\n  background-size: 48rpx;\n}\n", ""]);
+exports.push([module.i, ".box[data-v-6bc2fbc4] {\n  margin: 15rpx 0;\n  width: 320rpx;\n  height: 300rpx;\n  box-shadow: 0 0 10rpx #eff3f3;\n  border-radius: 10rpx;\n  display: flex;\n  align-items: center;\n  align-content: center;\n  justify-content: center;\n  flex-direction: column;\n}\n.box-switch[data-v-6bc2fbc4] {\n  position: relative;\n}\n.box-switch-view[data-v-6bc2fbc4] {\n  position: absolute;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0;\n  width: 100%;\n  height: 100%;\n}\n.box-switch[data-v-6bc2fbc4]  .uni-switch-wrapper {\n  -webkit-transform: scale(0.8);\n          transform: scale(0.8);\n}\n.box-icon[data-v-6bc2fbc4] {\n  width: 48rpx;\n  height: 48rpx;\n}\n.box-txt[data-v-6bc2fbc4] {\n  font-size: 28rpx;\n}\n.box-operatior[data-v-6bc2fbc4] {\n  display: flex;\n  justify-content: space-between;\n  width: 60%;\n  transition: 0.25s;\n}\n.box-operatior-btn[data-v-6bc2fbc4] {\n  flex-shrink: 0;\n  width: 48rpx;\n  height: 48rpx;\n  border-radius: 0;\n  background-color: #fff !important;\n}\n.box-operatior-btn[data-v-6bc2fbc4]::after {\n  border: none;\n}\n.box-operatior-active[data-v-6bc2fbc4] {\n  background-color: #41aaa0 !important;\n  border-radius: 50% !important;\n  width: 48rpx;\n  height: 48rpx;\n}\n.box-operatior-plus[data-v-6bc2fbc4] {\n  width: 48rpx;\n  height: 48rpx;\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ") no-repeat center;\n  background-size: 48rpx;\n}\n.box-operatior-shutdown[data-v-6bc2fbc4] {\n  width: 48rpx;\n  height: 48rpx;\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ") no-repeat center;\n  background-size: 48rpx;\n}\n.box-operatior-subtract[data-v-6bc2fbc4] {\n  width: 48rpx;\n  height: 48rpx;\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_2___ + ") no-repeat center;\n  background-size: 48rpx;\n}\n", ""]);
 // Exports
 module.exports = exports;
 

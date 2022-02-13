@@ -6,9 +6,9 @@ import { toastSuccess, toastError } from '@/utils/changeover'
 * interceptores request success handler
 **/
 export const requestConfigInterceptors = (config) => {
-  const host = Storage.getStorageSync('host')
-  if (host) {
-    config.baseURL = host
+  const data = Storage.getStorageSync('config')
+  if (data) {
+    config.baseURL = `http://${data.ip}`
   }
 	return config;
 }

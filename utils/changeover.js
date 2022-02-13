@@ -15,6 +15,7 @@ export const hideLoading = () => uni.hideLoading()
 
 export const navigateTo = (config) => uni.navigateTo(config)
 export const navigateBack = () => uni.navigateBack()
+export const reLaunch = (config) => uni.reLaunch(config)
 
 export const switchTab = (config) => uni.switchTab(config)
 export const makePhoneCall = (config) => uni.makePhoneCall(config)
@@ -42,7 +43,7 @@ export const downloadFile = (url) => new Promise((resolve, reject) => {
 
 export const uploadFile = (url, filePath) => new Promise((resolve, reject) => {
 	const token = Storage.getStorageSync(ACCESS_TOKEN)
-	
+
 	uni.uploadFile({
 		url: `${service.defaults.baseURL}${url}`,
 		filePath,
@@ -52,3 +53,8 @@ export const uploadFile = (url, filePath) => new Promise((resolve, reject) => {
 		fail: reject
 	})
 })
+
+export const connectSocket = (config = {}) => uni.connectSocket(config)
+export const onSocketOpen = (fn = () => {}) => uni.onSocketOpen(fn)
+export const sendSocketMessage = (data = {}) => uni.sendSocketMessage(data)
+export const onSocketMessage = (fn = () => {}) => uni.onSocketMessage(fn)

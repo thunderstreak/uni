@@ -27,6 +27,7 @@
 	import HeaderTop from '@/components/headerTop.vue'
 	import LightList from '@/components/lightList.vue'
 	import Api from '@/api/index'
+
 	export default {
 		components:{ HeaderTop, LightList },
 		data() {

@@ -2,14 +2,17 @@
   <view class="box">
     <view :class="['box-icon', className]"></view>
     <text class="box-txt">{{ data.lightName }}</text>
-    <view class="box-switch">
-      <switch color="#55b3a9" :checked="checked" @change="(e) => handlerSwitch(e, data)" />
+    <view class="box-switch" @click="handlerSwitch">
+      <switch color="#55b3a9" :checked="checked"/>
+      <view class="box-switch-view"></view>
     </view>
   </view>
 </template>
 
 <script>
+  import Storage from "@/utils/storage"
   import Api from '@/api/index'
+  const config = Storage.getStorageSync('config')
   export default {
     name: "lightItem",
     props: {
@@ -24,21 +27,29 @@
     },
     data() {
       return {
-        checked: !!this.data.lightState
+        checked: !this.data.lightState,
       };
+    },
+    mounted() {
+    },
+    watch: {
+      data(value) {
+        this.checked = !value.lightState
+      }
     },
     methods: {
       // 开关控制, 更新灯状态
-      handlerSwitch(e, data) {
-        const { value } = e.detail
-        const { ioIndex, lightState, lightName } = data
+      handlerSwitch() {
+        const { ioIndex, lightState, lightName } = this.data
         const params = {
-          "key": '杨晶',
+          "key": config.user,
           "lightName": lightName,
-          "lightState": Number(value)
+          "lightState": lightState ? 0 : 1
         }
         Api.updateLightState(params).then(res => {
           this.checked = value
+        }).catch(err => {
+          this.checked = !this.data.lightState
         })
       }
     }
@@ -59,6 +70,16 @@
     flex-direction: column;
 
     &-switch {
+      position: relative;
+      &-view{
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+      }
       ::v-deep .uni-switch-wrapper {
         transform: scale(0.80);
       }

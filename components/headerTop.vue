@@ -6,7 +6,7 @@
 </template>
 
 <script>
-  import { navigateTo } from '@/utils/changeover'
+  import { reLaunch } from '@/utils/changeover'
   import Storage from "@/utils/storage"
 	export default {
 		name:"headerTop",
@@ -22,8 +22,8 @@
 		},
 		methods: {
 			handlerSpeech(e) {
-        Storage.clearStorageSync()
-        navigateTo({ url: '/pages/setting/index' })
+        // Storage.clearStorageSync()
+        reLaunch({ url: '/pages/setting/index' })
 				// plus.speech.startRecognize({
 				// 	continue: true,
 				// 	engine: 'baidu',

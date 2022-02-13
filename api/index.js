@@ -11,7 +11,7 @@ const setLoadingDecorator = getLoadingDecorator(showLoading, hideLoading)
 export default new class Api {
   // 更新灯光状态
   // @getMockUpdateLight
-  @setLoadingDecorator
+  // @setLoadingDecorator
   @setMessageDecorator({ msgKey: 'message' })
   updateLightState = wrapperPost('/api/v1/light/updateLightState')
 

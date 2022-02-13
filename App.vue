@@ -4,8 +4,8 @@
 	export default {
 		onLaunch: function() {
 			console.log('App Launch')
-      const host = Storage.getStorageSync('host')
-      if (host) {
+      const config = Storage.getStorageSync('config')
+      if (config) {
       	navigateTo({ url: '/pages/home/index' })
       } else {
       	navigateTo({ url: '/pages/setting/index' })
